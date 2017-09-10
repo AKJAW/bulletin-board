@@ -1,0 +1,13 @@
+#login-status {
+  margin-right: 20px;
+}
+.header-login {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+.header-login > span {
+  margin-left: auto;
+  /*justify-content: flex-end;*/
+  color: red;
+}
