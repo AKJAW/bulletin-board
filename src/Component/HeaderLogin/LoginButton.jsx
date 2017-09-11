@@ -3,12 +3,12 @@ import React from 'react';
 // var FontAwesome = require('react-fontawesome');
 // console.log(styles);
 // console.log(styles.headerLogin');
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 
 class LoginInput extends React.Component {
 	render() {
 		return (
-			<button onClick={this.props.onClick}>{this.props.text}</button>
+			<button disabled={this.props.isDisabled} onClick={this.props.onClick}>{this.props.text}</button>
 		);
 	}
 }
