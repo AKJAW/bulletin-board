@@ -14,11 +14,10 @@ class LoginMenu extends React.Component {
 		this.handleLoginClick = this.handleLoginClick.bind(this);
 		this.handleLogoutClick = this.handleLogoutClick.bind(this);
 		this.handleInputLoginChange = this.handleInputLoginChange.bind(this);
-		this.handleInputLogoutChange = this.handleInputLogoutChange.bind(this);
+		// this.handleInputLogoutChange = this.handleInputLogoutChange.bind(this);
 		this.state = {
 			isLoggedIn: false,
-			loginText: '',
-			passwordText: ''
+			loginText: ''
 		};
 	}
 
@@ -29,7 +28,7 @@ class LoginMenu extends React.Component {
 			databaseURL: 'https://bulletin-board-31d52.firebaseio.com',
 			projectId: 'bulletin-board-31d52',
 			storageBucket: 'bulletin-board-31d52.appspot.com',
-			messagingSenderId: '326331476469'
+			messagingSenderId: '326331476469',
 		};
 		Firebase.initializeApp(config);
 		Firebase.auth().onAuthStateChanged((user) => {
@@ -48,16 +47,16 @@ class LoginMenu extends React.Component {
 
 	}
 
-	handleInputLogoutChange(e) {
-		this.setState({passwordText: e.target.value});
-		// console.log(e.target.value);
-	}
+	// handleInputLogoutChange(e) {
+	// 	this.setState({passwordText: e.target.value});
+	// 	// console.log(e.target.value);
+	// }
 
 	handleLoginClick() {
 		const email = this.state.loginText;
-		// console.log(email);
-		const password = this.state.passwordText;
-		// console.log(password);
+		console.log(email);
+		const password = this.passwordInput.value;
+		console.log(password);
 
 		Firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
 			// Handle Errors here.
@@ -91,7 +90,9 @@ class LoginMenu extends React.Component {
 		return (
 			<div>
 				<LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>
-				<LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" onChange={this.handleInputLogoutChange}/>
+				<LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+					this.passwordInput = input;
+				}}/>
 				<LoginButton text="Zaloguj" isDisabled={this.state.isLoggedIn} onClick={this.handleLoginClick}/>
 				<LoginButton text="Wyloguj" isDisabled={!this.state.isLoggedIn} onClick={this.handleLogoutClick}/>
 			</div>

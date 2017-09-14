@@ -16,7 +16,7 @@ class LoginInput extends React.Component {
 		return (
 			<label style={styles.i}>
 				<FontAwesome name={this.props.fontIcon}/> {this.props.text}
-				<input disabled={this.props.isDisabled} style={this.props.isDisabled ? styles.disabled : {}} type={this.props.inputType} onChange={this.props.onChange}/>
+				<input disabled={this.props.isDisabled} style={this.props.isDisabled ? styles.disabled : {}} type={this.props.inputType} onChange={this.props.onChange} ref={this.props.inputRef ? this.props.inputRef : ''}/>
 			</label>
 		);
 	}
@@ -25,7 +25,7 @@ LoginInput.propTypes = {
 	fontIcon: PropTypes.string.isRequired,
 	text: PropTypes.string,
 	inputType: PropTypes.string.isRequired,
-	onChange: PropTypes.func.isRequired,
+	// onChange: PropTypes.func.isRequired,
 };
 
 LoginInput.defaultProps = {
