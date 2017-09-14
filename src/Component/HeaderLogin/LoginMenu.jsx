@@ -44,7 +44,6 @@ class LoginMenu extends React.Component {
 
 	handleInputLoginChange(e) {
 		this.setState({loginText: e.target.value});
-
 	}
 
 	// handleInputLogoutChange(e) {
@@ -54,9 +53,9 @@ class LoginMenu extends React.Component {
 
 	handleLoginClick() {
 		const email = this.state.loginText;
-		console.log(email);
+		// console.log(email);
 		const password = this.passwordInput.value;
-		console.log(password);
+		// console.log(password);
 
 		Firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
 			// Handle Errors here.
