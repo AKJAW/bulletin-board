@@ -3,13 +3,9 @@ export default {
 		display: 'flex',
 		flexDirection: 'row',
 		marginBottom: '5px',
-		justifyContent: 'space-between',
-		':hover': {
-			background: 'red'
-		}
+		justifyContent: 'space-between'
 	},
 	span : {
 		color: 'red'
 	},
-	
 }

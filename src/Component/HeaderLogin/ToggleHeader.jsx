@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 import styles from './ToggleHeader.css.js';
 import FontAwesome from 'react-fontawesome';
-import {CSSTransitionGroup} from 'react-transition-group'
+// import {CSSTransitionGroup} from 'react-transition-group'
 // console.log(styles);
 // console.log(styles.headerLogin');
 
@@ -23,10 +23,10 @@ class HeaderLogin extends React.Component {
 			// console.log(arr);
 			// let arr = this.state.style.concat([styles.rotated]);
 			this.setState({style: {...this.state.style, ...styles.rotated}});
-			console.log(this.state.style);
+			// console.log(this.state.style);
 		} else {
 			this.setState({style: styles.i});
-			console.log(this.state.style);
+			// console.log(this.state.style);
 			// console.log(styles.i);
 		}
 		// this.setState({toggled: !this.props.toggled});

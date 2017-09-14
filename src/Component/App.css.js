@@ -1,5 +1,7 @@
 export default {
 	i : {
-		color: 'red'
+		color: 'red',
+		marginRight: '12px',
+		marginLeft: '12px', 
 	}
 }

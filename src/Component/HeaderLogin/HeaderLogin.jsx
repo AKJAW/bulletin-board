@@ -1,5 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
+import {Motion, spring,} from 'react-motion';
+// import {slideInDown} from 'react-animations'
 import styles from './HeaderLogin.css.js';
 import LoginMenu from './LoginMenu.jsx';
 import ToggleHeader from './ToggleHeader.jsx';
@@ -14,12 +16,12 @@ class HeaderLogin extends React.Component {
 		this.handleToggleClick = this.handleToggleClick.bind(this);
 		this.state = {
 			username: '',
-			toggled: true,
+			style: {},
 		};
 	}
 
-	handleToggleClick(isToggled){
-		this.setState({toggled: !isToggled});
+	handleToggleClick(isToggled) {
+		this.props.onToggleClick(isToggled);
 	}
 
 	handleLoginClick(userName) {
@@ -32,12 +34,23 @@ class HeaderLogin extends React.Component {
 
 	render() {
 		return (
-			<div style={styles.headerLogin}>
-				<LoginMenu onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick}/>
-				<div>
-					<span id="login-status" style={styles.span}>{this.state.username ? 'Jesteś zalogowany: ' + this.state.username : 'Nie jesteś zalogowany'}</span>
-					<ToggleHeader toggled={this.state.toggled} onToggleClick={this.handleToggleClick}/>
-				</div>
+			<div>
+				<Motion style={{x: spring(this.props.toggled ? 0 : -50)}}>
+          {({x}) =>
+            // children is a callback which should accept the current value of
+            // `style`
+						<div style={[this.state.style, styles.headerLogin, {
+							WebkitTransform: `translate3d(0, ${x}px, 0)`,
+							transform: `translate3d(0, ${x}px, 0)`,
+						}]}>
+							<LoginMenu onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick}/>
+							<span id="login-status" style={styles.span}>{this.state.username ? 'Jesteś zalogowany: ' + this.state.username : 'Nie jesteś zalogowany'}</span>
+
+						</div>
+          }
+        </Motion>
+
+				<ToggleHeader toggled={this.props.toggled} onToggleClick={this.handleToggleClick}/>
 			</div>
 		);
 	}
