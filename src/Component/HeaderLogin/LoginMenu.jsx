@@ -1,6 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
 import ReactFire from 'reactfire';
+import Radium from 'radium';
+import {Motion, spring,} from 'react-motion';
 import LoginInput from './LoginInput.jsx';
 import LoginButton from './LoginButton.jsx';
 // import FontAwesome from 'react-fontawesome';
@@ -15,11 +17,15 @@ class LoginMenu extends React.Component {
 		this.logIn = this.logIn.bind(this);
 		this.logOut = this.logOut.bind(this);
 		this.handleInputLoginChange = this.handleInputLoginChange.bind(this);
+		this.handleSignUpClick = this.handleSignUpClick.bind(this);
 		// this.handleInputLogoutChange = this.handleInputLogoutChange.bind(this);
 		this.state = {
 			isLoggedIn: false,
-			loginText: ''
+			loginText: '',
+			isSigningUp: false,
+			scale: 1,
 		};
+		console.log(this.state.isSigningUp)
 	}
 
 	componentDidMount() {
@@ -93,17 +99,36 @@ class LoginMenu extends React.Component {
 		}
 	}
 
+	handleSignUpClick() {
+		// console.log(window.innerWidth/2-200);
+		this.setState({scale: 0});
+		setTimeout(function() { this.setState({scale: 1}); }.bind(this), 200);
+		this.setState({isSigningUp: !this.state.isSigningUp});
+	}
+
 	render() {
 		return (
-			<div>
-				<LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>
-				<LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
-					this.passwordInput = input;
-				}}/>
-				<LoginButton text={this.state.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/> {/* <LoginButton text="Wyloguj" isDisabled={!this.state.isLoggedIn} onClick={this.handleLogoutClick}/> */}
-			</div>
+			<Motion style={{scale: spring(this.state.scale, {stiffness: 140, damping: 16})}}>
+				{({scale}) =>
+					// children is a callback which should accept the current value of
+					// `style`
+					<div style={{
+						WebkitTransform: `scale3d(${scale}, ${scale}, ${scale})`,
+						transform: `scale3d(${scale}, ${scale}, ${scale})`,
+					}}>
+						<LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>
+						<LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+							this.passwordInput = input;
+						}}/>
+						{this.state.isSigningUp || <LoginButton style={{}} text={this.state.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/>}
+						<LoginButton style={{marginLeft:'10px'}} text='Zarejestruj się' onClick={this.handleSignUpClick}/>
+						{this.state.isSigningUp && <LoginButton style={{marginLeft:'10px'}} text='Anuluj' onClick={this.handleLoginClick}/>}
+					</div>
+				}
+			</Motion>
+
 		);
 	}
 }
 
-export default LoginMenu;
+export default Radium(LoginMenu);

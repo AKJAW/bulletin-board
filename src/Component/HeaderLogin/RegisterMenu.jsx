@@ -33,7 +33,6 @@ class LoginMenu extends React.Component {
 		};
 		Firebase.initializeApp(config);
 		Firebase.auth().onAuthStateChanged((user) => {
-
 			if (user) {
 				this.setState({isLoggedIn: true});
 				this.props.onLoginClick(this.state.loginText);

@@ -11,7 +11,7 @@ import styles from './LoginButton.css.js';
 class LoginInput extends React.Component {
 	render() {
 		return (
-			<button disabled={this.props.isDisabled} style={[this.props.isDisabled ? styles.buttonDisabled : {}, styles.button]} onClick={this.props.onClick}>{this.props.text}</button>
+			<button disabled={this.props.isDisabled} style={[this.props.isDisabled ? styles.buttonDisabled : {}, styles.button, this.props.style]} onClick={this.props.onClick}>{this.props.text}</button>
 		);
 	}
 }
