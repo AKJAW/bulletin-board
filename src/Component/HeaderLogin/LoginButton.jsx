@@ -1,4 +1,7 @@
 import React from 'react';
+import Radium from 'radium';
+
+import styles from './LoginButton.css.js';
 // import styles from './HeaderLogin.css.js';
 // var FontAwesome = require('react-fontawesome');
 // console.log(styles);
@@ -8,9 +11,9 @@ import React from 'react';
 class LoginInput extends React.Component {
 	render() {
 		return (
-			<button disabled={this.props.isDisabled} onClick={this.props.onClick}>{this.props.text}</button>
+			<button disabled={this.props.isDisabled} style={[this.props.isDisabled ? styles.buttonDisabled : {}, styles.button]} onClick={this.props.onClick}>{this.props.text}</button>
 		);
 	}
 }
 
-export default LoginInput;
+export default Radium(LoginInput);

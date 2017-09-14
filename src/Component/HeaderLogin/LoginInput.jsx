@@ -16,7 +16,7 @@ class LoginInput extends React.Component {
 		return (
 			<label style={styles.i}>
 				<FontAwesome name={this.props.fontIcon}/> {this.props.text}
-				<input disabled={this.props.isDisabled} style={this.props.isDisabled ? styles.disabled : {}} type={this.props.inputType} onChange={this.props.onChange} ref={this.props.inputRef ? this.props.inputRef : ''}/>
+				<input disabled={this.props.isDisabled} style={[this.props.isDisabled ? styles.inputDisabled : {}, styles.input]} type={this.props.inputType} onChange={this.props.onChange} ref={this.props.inputRef ? this.props.inputRef : ''}/>
 			</label>
 		);
 	}
