@@ -14,10 +14,15 @@ class HeaderLogin extends React.Component {
 		this.handleLoginClick = this.handleLoginClick.bind(this);
 		this.handleLogoutClick = this.handleLogoutClick.bind(this);
 		this.handleToggleClick = this.handleToggleClick.bind(this);
+		this.handleSendError = this.handleSendError.bind(this);
 		this.state = {
 			username: '',
 			style: {},
 		};
+	}
+
+	handleSendError(error){
+		this.props.sendError(error);
 	}
 
 	handleToggleClick(isToggled) {
@@ -43,7 +48,7 @@ class HeaderLogin extends React.Component {
 							WebkitTransform: `translate3d(0, ${x}px, 0)`,
 							transform: `translate3d(0, ${x}px, 0)`,
 						}]}>
-							<LoginMenu onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick}/>
+							<LoginMenu onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick} sendError={this.handleSendError}/>
 							<span id="login-status" style={styles.span}>{this.state.username ? 'Jesteś zalogowany: ' + this.state.username : 'Nie jesteś zalogowany'}</span>
 
 						</div>

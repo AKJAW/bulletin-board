@@ -1,6 +1,5 @@
 import React from 'react';
 import Firebase from 'firebase';
-import ReactFire from 'reactfire';
 import Radium from 'radium';
 import {Motion, spring,} from 'react-motion';
 import LoginInput from './LoginInput.jsx';
@@ -18,6 +17,9 @@ class LoginMenu extends React.Component {
 		this.logOut = this.logOut.bind(this);
 		this.handleInputLoginChange = this.handleInputLoginChange.bind(this);
 		this.handleSignUpClick = this.handleSignUpClick.bind(this);
+		this.handleAbortSignUp = this.handleAbortSignUp.bind(this);
+		this.createAccount = this.createAccount.bind(this);
+		this.handleSendError = this.handleSendError.bind(this);
 		// this.handleInputLogoutChange = this.handleInputLogoutChange.bind(this);
 		this.state = {
 			isLoggedIn: false,
@@ -25,7 +27,6 @@ class LoginMenu extends React.Component {
 			isSigningUp: false,
 			scale: 1,
 		};
-		console.log(this.state.isSigningUp)
 	}
 
 	componentDidMount() {
@@ -41,12 +42,19 @@ class LoginMenu extends React.Component {
 		Firebase.auth().onAuthStateChanged((user) => {
 
 			if (user) {
-				this.setState({isLoggedIn: true});
+				this.setState({isLoggedIn: true, isSigningUp:false});
 				this.props.onLoginClick(this.state.loginText);
+				this.handleSendError({
+					code: 'auth/logged-in',
+				})
 			} else {
 				this.setState({isLoggedIn: false});
 			}
 		})
+	}
+
+	handleSendError(error) {
+		this.props.sendError(error);
 	}
 
 	handleInputLoginChange(e) {
@@ -65,20 +73,21 @@ class LoginMenu extends React.Component {
 
 		Firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
 			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
+			// const errorCode = error.code;
+			// const errorMessage = error.message;
 			// [START_EXCLUDE]
-			if (errorCode === 'auth/wrong-password') {
-				alert('Zle haslo.');
-			} else {
-				alert(errorMessage);
-			}
-			console.log(error);
+			// if (errorCode === 'auth/wrong-password') {
+			// 	alert('Zle haslo.');
+			// } else {
+			// 	alert(errorMessage);
+			// }
+			// console.log(error);
+			this.handleSendError(error);
 			// document.getElementById('quickstart-sign-in').disabled = false;
 			// [END_EXCLUDE]
 		});
 		// this.setState({username: this.state.loginText});
-		console.log("Zaloguj");
+		// console.log("Zaloguj");
 	}
 
 	logOut() {
@@ -88,8 +97,32 @@ class LoginMenu extends React.Component {
 		}, (error) => {
 			alert(error.message);
 		});
-		console.log("Wyloguj");
+		// console.log("Wyloguj");
+		this.handleSendError({
+			code: 'auth/logged-out',
+		})
 	}
+
+	createAccount(){
+		const email = this.state.loginText;
+		// console.log(email);
+		const password = this.passwordInput.value;
+		// console.log(password);
+
+		Firebase.auth().createUserWithEmailAndPassword(email, password)
+		.catch( (error) => {
+			// Handle Errors here.
+			// var errorCode = error.code;
+			// var errorMessage = error.message;
+			// if (errorCode == 'auth/weak-password') {
+			// 	// alert('The password is too weak.');
+			// } else {
+			// 	// alert(errorMessage);
+			// }
+			// console.log(error);
+			this.handleSendError(error);
+		});
+		}
 
 	handleLoginClick() {
 		if (!this.state.isLoggedIn) {
@@ -103,12 +136,21 @@ class LoginMenu extends React.Component {
 		// console.log(window.innerWidth/2-200);
 		this.setState({scale: 0});
 		setTimeout(function() { this.setState({scale: 1}); }.bind(this), 200);
-		this.setState({isSigningUp: !this.state.isSigningUp});
+		// this.setState({isSigningUp: true, isLoggedIn: false});
+		this.setState({isSigningUp: true});
 	}
+
+	handleAbortSignUp(){
+		this.setState({scale: 0});
+		setTimeout(function() { this.setState({scale: 1}); }.bind(this), 200);
+		this.setState({isSigningUp: false})
+	}
+
+
 
 	render() {
 		return (
-			<Motion style={{scale: spring(this.state.scale, {stiffness: 140, damping: 16})}}>
+			<Motion style={{scale: spring(this.state.scale, {stiffness: 350, damping: 28})}}>
 				{({scale}) =>
 					// children is a callback which should accept the current value of
 					// `style`
@@ -116,13 +158,18 @@ class LoginMenu extends React.Component {
 						WebkitTransform: `scale3d(${scale}, ${scale}, ${scale})`,
 						transform: `scale3d(${scale}, ${scale}, ${scale})`,
 					}}>
-						<LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>
-						<LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+						{this.state.isSigningUp || <LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>}
+						{this.state.isSigningUp || <LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
 							this.passwordInput = input;
-						}}/>
-						{this.state.isSigningUp || <LoginButton style={{}} text={this.state.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/>}
-						<LoginButton style={{marginLeft:'10px'}} text='Zarejestruj się' onClick={this.handleSignUpClick}/>
-						{this.state.isSigningUp && <LoginButton style={{marginLeft:'10px'}} text='Anuluj' onClick={this.handleLoginClick}/>}
+						}}/>}
+						{this.state.isSigningUp && <LoginInput fontIcon="envelope-o" isDisabled={this.state.isLoggedIn} inputType="text" text="email:" onChange={this.handleInputLoginChange}/>}
+						{this.state.isSigningUp && <LoginInput fontIcon="unlock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+							this.passwordInput = input;
+						}}/>}
+						{(this.state.isSigningUp && !this.state.isLoggedIn) || <LoginButton style={{}} text={this.state.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/>}
+						{(!this.state.isLoggedIn && !this.state.isSigningUp) && <LoginButton style={{marginLeft:'10px'}} text='Zarejestruj się' onClick={this.handleSignUpClick}/>}
+						{this.state.isSigningUp && <LoginButton text='Załóż konto' onClick={this.createAccount}/>}
+						{this.state.isSigningUp && <LoginButton style={{marginLeft:'10px'}} text='Anuluj' onClick={this.handleAbortSignUp}/>}
 					</div>
 				}
 			</Motion>

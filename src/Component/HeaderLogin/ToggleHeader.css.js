@@ -8,6 +8,7 @@ export default {
 		top: '10px',
 		right: '7px',
 		cursor: 'pointer',
+		zIndex: '2',
 	},
 	rotated : {
 		transform: 'rotate(90deg)'
