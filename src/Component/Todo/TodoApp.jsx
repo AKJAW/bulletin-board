@@ -4,6 +4,7 @@ import Firebase from 'firebase';
 import styles from './TodoApp.css.js';
 import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
+import LabelDiv from './LabelDiv.jsx';
 
 
 class TodoApp extends React.Component {
@@ -105,15 +106,19 @@ class TodoApp extends React.Component {
 								return(
 									Object.keys(label).map(function(labelObject,iterator) {
 										// debugger;
-										return(
-											<div key={labelObject}>{labelObject}
-												{
-													label[labelObject]['tasks'].map((task, liIterator) =>{
-														return(<li key={liIterator}>{task}</li>)
-													})
-												}
-											</div>
-										)
+
+										return(<LabelDiv labelName={labelObject} labelObject={label[labelObject]}/>)
+										// return(
+										// 	<div key={labelObject}>{labelObject}
+										// 		{
+										// 			label[labelObject]['tasks'].map((task, liIterator) =>{
+										// 				return(<li key={liIterator}>{task}</li>)
+										// 			})
+										// 		}
+										// 	</div>
+										// )
+
+
 										// console.log(task);
 										// console.log(label[task]);
 										// debugger;
