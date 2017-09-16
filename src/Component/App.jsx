@@ -1,9 +1,11 @@
 import React from 'react';
-import LoginHeader from './HeaderLogin/HeaderLogin.jsx';
-import Notification from './Notification/Notification.jsx';
-import styles from './App.css.js';
+import Firebase from 'firebase';
 import {StyleRoot} from 'radium';
 import {Motion, spring,} from 'react-motion';
+import LoginHeader from './HeaderLogin/HeaderLogin.jsx';
+import Notification from './Notification/Notification.jsx';
+import TodoApp from './Todo/TodoApp.jsx';
+import styles from './App.css.js';
 
 class App extends React.Component {
 	constructor(props) {
@@ -14,14 +16,33 @@ class App extends React.Component {
 		this.state = {
 			toggled: (toggleState === 'true'),
 			errorList: [],
+			isLoggedIn: false,
+			username: '',
+			uid: '',
 		};
-		// if (!toggleState){
-		// 	this.setState({
-		// 		toggled: false,
-		// 	});
-		// }
-		// console.log(this.state.toggled)
-		// console.log(toggleState)
+	}
+
+	componentDidMount() {
+		const config = {
+			apiKey: 'AIzaSyBqzVU8p61mFTSdl00ksJnBSTW3pEMk3vw',
+			authDomain: 'bulletin-board-31d52.firebaseapp.com',
+			databaseURL: 'https://bulletin-board-31d52.firebaseio.com',
+			projectId: 'bulletin-board-31d52',
+			storageBucket: 'bulletin-board-31d52.appspot.com',
+			messagingSenderId: '326331476469',
+		};
+		Firebase.initializeApp(config);
+		Firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				// debugger;
+				this.setState({isLoggedIn: true, isSigningUp:false, username:user.email, uid:user.uid});
+				this.handleError({
+					code: 'auth/logged-in',
+				})
+			} else {
+				this.setState({isLoggedIn: false, username:''});
+			}
+		})
 	}
 
 	deleteFirstItemFromErrorList(){
@@ -113,7 +134,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<StyleRoot>
-					<LoginHeader toggled={this.state.toggled} onToggleClick={this.handleToggleClick} sendError={this.handleError}/>
+					<LoginHeader toggled={this.state.toggled} onToggleClick={this.handleToggleClick} sendError={this.handleError} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
 					<Motion style={{x: spring(this.state.toggled ? 0 : -30)}}>
 	          {({x}) =>
 	            // children is a callback which should accept the current value of
@@ -123,7 +144,7 @@ class App extends React.Component {
 								transform: `translate3d(0, ${x}px, 0)`,
 							}, styles.i]}>
 								<Notification errorList={this.state.errorList} />
-								<div>assshh</div>
+								{(this.state.isLoggedIn && this.state.uid) && <TodoApp uid={this.state.uid}/>}
 
 							</div>
 	          }

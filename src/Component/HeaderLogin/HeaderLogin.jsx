@@ -11,12 +11,9 @@ import ToggleHeader from './ToggleHeader.jsx';
 class HeaderLogin extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleLoginClick = this.handleLoginClick.bind(this);
-		this.handleLogoutClick = this.handleLogoutClick.bind(this);
 		this.handleToggleClick = this.handleToggleClick.bind(this);
 		this.handleSendError = this.handleSendError.bind(this);
 		this.state = {
-			username: '',
 			style: {},
 		};
 	}
@@ -27,14 +24,6 @@ class HeaderLogin extends React.Component {
 
 	handleToggleClick(isToggled) {
 		this.props.onToggleClick(isToggled);
-	}
-
-	handleLoginClick(userName) {
-		this.setState({username: userName});
-	}
-
-	handleLogoutClick() {
-		this.setState({username: ''});
 	}
 
 	render() {
@@ -48,8 +37,8 @@ class HeaderLogin extends React.Component {
 							WebkitTransform: `translate3d(0, ${x}px, 0)`,
 							transform: `translate3d(0, ${x}px, 0)`,
 						}]}>
-							<LoginMenu onLoginClick={this.handleLoginClick} onLogoutClick={this.handleLogoutClick} sendError={this.handleSendError}/>
-							<span id="login-status" style={styles.span}>{this.state.username ? 'Jesteś zalogowany: ' + this.state.username : 'Nie jesteś zalogowany'}</span>
+							<LoginMenu onLogoutClick={this.handleLogoutClick} sendError={this.handleSendError} isLoggedIn={this.props.isLoggedIn}/>
+							<span id="login-status" style={styles.span}>{this.props.username ? 'Jesteś zalogowany: ' + this.props.username : 'Nie jesteś zalogowany'}</span>
 
 						</div>
           }

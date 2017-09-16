@@ -10,7 +10,7 @@ export default {
 		borderColor: '#82A2D7',
 		fontWeight: 600,
 		fontSize: '1rem',
-		lineHeight: 1.3,
+		lineHeight: 1.4,
 		// marginTop: '2px',
 		':hover': {
 			borderColor: '#4D6EA4',

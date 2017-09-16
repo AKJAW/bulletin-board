@@ -22,36 +22,13 @@ class LoginMenu extends React.Component {
 		this.handleSendError = this.handleSendError.bind(this);
 		// this.handleInputLogoutChange = this.handleInputLogoutChange.bind(this);
 		this.state = {
-			isLoggedIn: false,
 			loginText: '',
 			isSigningUp: false,
 			scale: 1,
 		};
 	}
 
-	componentDidMount() {
-		const config = {
-			apiKey: 'AIzaSyBqzVU8p61mFTSdl00ksJnBSTW3pEMk3vw',
-			authDomain: 'bulletin-board-31d52.firebaseapp.com',
-			databaseURL: 'https://bulletin-board-31d52.firebaseio.com',
-			projectId: 'bulletin-board-31d52',
-			storageBucket: 'bulletin-board-31d52.appspot.com',
-			messagingSenderId: '326331476469',
-		};
-		Firebase.initializeApp(config);
-		Firebase.auth().onAuthStateChanged((user) => {
 
-			if (user) {
-				this.setState({isLoggedIn: true, isSigningUp:false});
-				this.props.onLoginClick(this.state.loginText);
-				this.handleSendError({
-					code: 'auth/logged-in',
-				})
-			} else {
-				this.setState({isLoggedIn: false});
-			}
-		})
-	}
 
 	handleSendError(error) {
 		this.props.sendError(error);
@@ -93,7 +70,6 @@ class LoginMenu extends React.Component {
 	logOut() {
 		Firebase.auth().signOut().then(() => {
 			// Sign-out successful.
-			this.props.onLogoutClick();
 		}, (error) => {
 			alert(error.message);
 		});
@@ -125,7 +101,7 @@ class LoginMenu extends React.Component {
 		}
 
 	handleLoginClick() {
-		if (!this.state.isLoggedIn) {
+		if (!this.props.isLoggedIn) {
 			this.logIn();
 		} else {
 			this.logOut();
@@ -158,16 +134,16 @@ class LoginMenu extends React.Component {
 						WebkitTransform: `scale3d(${scale}, ${scale}, ${scale})`,
 						transform: `scale3d(${scale}, ${scale}, ${scale})`,
 					}}>
-						{this.state.isSigningUp || <LoginInput fontIcon="user-circle-o" isDisabled={this.state.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>}
-						{this.state.isSigningUp || <LoginInput fontIcon="lock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+						{this.state.isSigningUp || <LoginInput fontIcon="user-circle-o" isDisabled={this.props.isLoggedIn} inputType="text" text="login:" onChange={this.handleInputLoginChange}/>}
+						{this.state.isSigningUp || <LoginInput fontIcon="lock" isDisabled={this.props.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
 							this.passwordInput = input;
 						}}/>}
-						{this.state.isSigningUp && <LoginInput fontIcon="envelope-o" isDisabled={this.state.isLoggedIn} inputType="text" text="email:" onChange={this.handleInputLoginChange}/>}
-						{this.state.isSigningUp && <LoginInput fontIcon="unlock" isDisabled={this.state.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
+						{this.state.isSigningUp && <LoginInput fontIcon="envelope-o" isDisabled={this.props.isLoggedIn} inputType="text" text="email:" onChange={this.handleInputLoginChange}/>}
+						{this.state.isSigningUp && <LoginInput fontIcon="unlock" isDisabled={this.props.isLoggedIn} inputType="password" text="haslo:" inputRef={(input) => {
 							this.passwordInput = input;
 						}}/>}
-						{(this.state.isSigningUp && !this.state.isLoggedIn) || <LoginButton style={{}} text={this.state.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/>}
-						{(!this.state.isLoggedIn && !this.state.isSigningUp) && <LoginButton style={{marginLeft:'10px'}} text='Zarejestruj się' onClick={this.handleSignUpClick}/>}
+						{(this.state.isSigningUp && !this.props.isLoggedIn) || <LoginButton style={{}} text={this.props.isLoggedIn ? 'Wyloguj' : 'Zaloguj'} onClick={this.handleLoginClick}/>}
+						{(!this.props.isLoggedIn && !this.state.isSigningUp) && <LoginButton style={{marginLeft:'10px'}} text='Zarejestruj się' onClick={this.handleSignUpClick}/>}
 						{this.state.isSigningUp && <LoginButton text='Załóż konto' onClick={this.createAccount}/>}
 						{this.state.isSigningUp && <LoginButton style={{marginLeft:'10px'}} text='Anuluj' onClick={this.handleAbortSignUp}/>}
 					</div>
