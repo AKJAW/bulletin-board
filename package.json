@@ -8,6 +8,7 @@
     "radium": "^0.19.4",
     "react": "^15.6.1",
     "react-animations": "^0.1.0",
+    "react-beautiful-dnd": "^2.2.4",
     "react-dom": "^15.6.1",
     "react-fontawesome": "^1.6.1",
     "react-motion": "^0.5.1",

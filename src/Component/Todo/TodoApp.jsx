@@ -17,7 +17,8 @@ class TodoApp extends React.Component {
 			isCreatingLabel: false,
 			position: -300,
 			labelName: '',
-			items: [],
+			items: [{12312:{color: "green", tasks: ["p"]}},
+			{asda:{color: "blue", tasks: ["p", 123]}}],
 		};
 		setTimeout(() => {
 			this.setState({position: 0});
@@ -25,24 +26,29 @@ class TodoApp extends React.Component {
 	}
 
 	componentWillMount() {
-		this.firebaseTodoUidRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
-		// this.firebaseLabelRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
-		this.firebaseTodoUidRef.once('value').then(function(snapshot) {
-			let updatedList = [];
-			snapshot.forEach(function(childSnapshot){
-				updatedList.push({[childSnapshot.key]: childSnapshot.val()})
-				// console.log(snapshot.val());
-				// const updatedList = this.state.items.concat(snapshot.val());
-			}.bind(this))
-			// debugger;
-			this.setState({items: updatedList});
-		}.bind(this));
+		// this.firebaseTodoUidRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
+		// // this.firebaseLabelRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
+		// this.firebaseTodoUidRef.once('value').then(function(snapshot) {
+		// 	let updatedList = [];
+		// 	snapshot.forEach(function(childSnapshot){
+		// 		updatedList.push({[childSnapshot.key]: childSnapshot.val()})
+		// 		// console.log(snapshot.val());
+		// 		// const updatedList = this.state.items.concat(snapshot.val());
+		// 	}.bind(this))
+		// 	// debugger;
+		// 	console.log(updatedList)
+		// 	this.setState({items: updatedList});
+		// }.bind(this));
+
+
 		// debugger;
 		// this.firebaseTodoUidRef.on("child_added", function (dataSnapshot) {
 		// 	this.items.push(dataSnapshot.val());
 		// 	this.setState({items: this.items});
 		// }.bind(this));
 	}
+
+
 
 
 	CreateLabel(){
@@ -67,28 +73,6 @@ class TodoApp extends React.Component {
 
 	render() {
 		const items = this.state.items;
-		// if (items.length > 0) {
-		// 	items.map((label) => {
-		// 		Object.keys(label).map(function (task) {
-		// 			debugger;
-		// 			// return(
-		// 			// 	// <li key={label[task]}>{label[task]}</li>
-		// 			// 	// {
-		// 			// 	Object.keys(label[task]).map(function(task){
-		// 			// 			debugger;
-		// 			// 	})
-		// 			// 		// }
-		// 			// )
-		// 			console.log(task);
-		// 			console.log(label[task]);
-		// 			// debugger;
-		// 			// use task to get current key's name
-		// 			// and label[task] to get its value
-		// 		})
-		// 	})
-		// }
-
-
 		return(
 			<Motion style={{x: spring(this.state.position)}}>
 				{({x}) =>
@@ -101,37 +85,39 @@ class TodoApp extends React.Component {
 						<CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>
 						{this.state.isCreatingLabel &&
 							(<CreateLabelMenu labelName={this.state.labelName} onAddLabel={this.handleAddLabel} onChange={this.handleLabelNameChange}/>)}
-						{items.length > 0 &&
-							items.map((label) => {
-								return(
-									Object.keys(label).map(function(labelObject,iterator) {
-										// debugger;
+						<div style={styles.div}>
+							{items.length > 0 &&
+								items.map((label) => {
+									return(
+										Object.keys(label).map(function(labelObject,iterator) {
+											// debugger;
 
-										return(<LabelDiv labelName={labelObject} labelObject={label[labelObject]}/>)
-										// return(
-										// 	<div key={labelObject}>{labelObject}
-										// 		{
-										// 			label[labelObject]['tasks'].map((task, liIterator) =>{
-										// 				return(<li key={liIterator}>{task}</li>)
-										// 			})
-										// 		}
-										// 	</div>
-										// )
+											return(<LabelDiv labelName={labelObject} labelObject={label[labelObject]}/>)
+											// return(
+											// 	<div key={labelObject}>{labelObject}
+											// 		{
+											// 			label[labelObject]['tasks'].map((task, liIterator) =>{
+											// 				return(<li key={liIterator}>{task}</li>)
+											// 			})
+											// 		}
+											// 	</div>
+											// )
 
 
-										// console.log(task);
-										// console.log(label[task]);
-										// debugger;
-										// use task to get current key's name
-										// and label[task] to get its value
-									})
-								)
-								// debugger;
-								// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
-							})
+											// console.log(task);
+											// console.log(label[task]);
+											// debugger;
+											// use task to get current key's name
+											// and label[task] to get its value
+										})
+									)
+									// debugger;
+									// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
+								})
 
-						}
-							</div>)
+							}
+						</div>
+					</div>)
 						}
 					</Motion>
 		);

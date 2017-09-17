@@ -144,7 +144,7 @@ class App extends React.Component {
 								transform: `translate3d(0, ${x}px, 0)`,
 							}, styles.i]}>
 								<Notification errorList={this.state.errorList} />
-								{(this.state.isLoggedIn && this.state.uid) && <TodoApp uid={this.state.uid}/>}
+								{(this.state.isLoggedIn && this.state.uid) || <TodoApp uid={this.state.uid}/>}
 
 							</div>
 	          }
