@@ -4,7 +4,7 @@ import Firebase from 'firebase';
 import styles from './TodoApp.css.js';
 import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
-import LabelDiv from './LabelDiv.jsx';
+import ItemsContext from './ItemsContext.jsx';
 
 
 class TodoApp extends React.Component {
@@ -18,7 +18,7 @@ class TodoApp extends React.Component {
 			position: -300,
 			labelName: '',
 			items: [{12312:{color: "green", tasks: ["p"]}},
-			{asda:{color: "blue", tasks: ["p", 123]}}],
+			{asda:{color: "blue", tasks: ["p", 1, 2,3,4 ,5,6,7]}}],
 		};
 		setTimeout(() => {
 			this.setState({position: 0});
@@ -74,52 +74,26 @@ class TodoApp extends React.Component {
 	render() {
 		const items = this.state.items;
 		return(
-			<Motion style={{x: spring(this.state.position)}}>
-				{({x}) =>
-					// children is a callback which should accept the current value of
-					// `style`
-					(<div style={{
+			<div>
+				<Motion style={{x: spring(this.state.position)}}>
+					{({x}) =>
+						// children is a callback which should accept the current value of
+						// `style`
+						(<div style={{
 						WebkitTransform: `translate3d(${x}px, 0, 0)`,
 						transform: `translate3d(${x}px, 0, 0)`,
-					}}>
-						<CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>
-						{this.state.isCreatingLabel &&
-							(<CreateLabelMenu labelName={this.state.labelName} onAddLabel={this.handleAddLabel} onChange={this.handleLabelNameChange}/>)}
-						<div style={styles.div}>
-							{items.length > 0 &&
-								items.map((label) => {
-									return(
-										Object.keys(label).map(function(labelObject,iterator) {
-											// debugger;
+						}}>
+							<CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>
+							{this.state.isCreatingLabel &&
+								(<CreateLabelMenu labelName={this.state.labelName} onAddLabel={this.handleAddLabel} onChange={this.handleLabelNameChange}/>)}
 
-											return(<LabelDiv labelName={labelObject} labelObject={label[labelObject]}/>)
-											// return(
-											// 	<div key={labelObject}>{labelObject}
-											// 		{
-											// 			label[labelObject]['tasks'].map((task, liIterator) =>{
-											// 				return(<li key={liIterator}>{task}</li>)
-											// 			})
-											// 		}
-											// 	</div>
-											// )
-
-
-											// console.log(task);
-											// console.log(label[task]);
-											// debugger;
-											// use task to get current key's name
-											// and label[task] to get its value
-										})
-									)
-									// debugger;
-									// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
-								})
-
-							}
-						</div>
-					</div>)
-						}
-					</Motion>
+						</div>)
+					}
+				</Motion>
+				<div style={styles.div}>
+					{items.length > 0 && <ItemsContext items={items}/>}
+				</div>
+			</div>
 		);
 	}
 }

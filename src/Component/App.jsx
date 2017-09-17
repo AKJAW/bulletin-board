@@ -140,15 +140,14 @@ class App extends React.Component {
 	            // children is a callback which should accept the current value of
 	            // `style`
 							<div style={[{
-								WebkitTransform: `translate3d(0, ${x}px, 0)`,
-								transform: `translate3d(0, ${x}px, 0)`,
+						WebkitTransform: `translate3d(0, ${x}px, 0)`,
+						transform: `translate3d(0, ${x}px, 0)`,
 							}, styles.i]}>
 								<Notification errorList={this.state.errorList} />
-								{(this.state.isLoggedIn && this.state.uid) || <TodoApp uid={this.state.uid}/>}
-
 							</div>
 	          }
 	        </Motion>
+					{(this.state.isLoggedIn && this.state.uid) || <TodoApp uid={this.state.uid}/>}
 
 				</StyleRoot>
 
