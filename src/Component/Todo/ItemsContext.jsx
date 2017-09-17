@@ -1,7 +1,7 @@
 import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
-import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import {DragDropContext} from 'react-beautiful-dnd';
 import styles from './ItemsContext.css.js';
 import LabelsDroppable from './LabelsDroppable.jsx';
 
@@ -15,7 +15,7 @@ const reorder = (list, startIndex, endIndex) => {
 	return result;
 };
 
-class ItemsContext extends React.Component {
+class LabelDiv extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
@@ -23,7 +23,7 @@ class ItemsContext extends React.Component {
 			items: [].concat(this.props.items),
 		}
 		console.log(this.state.items);
-		// debugger
+
 	}
 
 	onDragEnd(result) {
@@ -31,54 +31,77 @@ class ItemsContext extends React.Component {
 		if (!result.destination) {
 			return;
 		}
+		const dropabbleIDSplitted = result.draggableId.split('-');
+		const destinatonIDSplitted = result.destination.droppableId.split('-');
+		// debugger;
+		let label;
+		if(dropabbleIDSplitted[1] === destinatonIDSplitted[1]){
+			label = dropabbleIDSplitted[1];
+		}
+		// const arr = this.state.items;
+		// let items = this.state.items.slice(0);
+		let items = [...this.state.items];
+		let index;
+		for(var i = 0; i < items.length; i++) {
+			if(Object.keys(items[i])[0] === label){
+				index = i;
+			}
+	 	}
 
-		const items = reorder(this.state.items, result.source.index, result.destination.index);
+		// console.log(items);
+		debugger;
+		const tasks = reorder(items[index][label]['tasks'], result.source.index, result.destination.index);
+		items[index][label]['tasks'] = tasks;
+		// debugger;
 
-		this.setState({items});
+		console.log(this.state.items);
+		this.setState({items: [].concat(items)});
 		console.log(this.state.items);
 	}
 
 
 	render() {
 		// debugger;
-		// const items = this.state.items
+		const items = this.state.items
 		// debugger;
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
-				<Droppable droppableId="droppable">
-					{(provided, snapshot) => (
-						<div ref={provided.innerRef} style={{
-							background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-								padding: 8,
-								width: 100
-						}}>
-							{this.state.items[1]['asda']['tasks'].map((item, liIterator) => (
-								<Draggable key={`item-${liIterator}`} draggableId={`item-${liIterator}`}>
-									{(provided, snapshot) => (
-										<div>
-											<div ref={provided.innerRef} style={
-												[provided.draggableStyle,
-												{
-													// some basic styles to make the items look a bit nicer
-													userSelect: 'none',
-													padding: 8 * 2,
-  												margin: `0 0 ${8}px 0`,
+				<div style={{
+					display: 'flex',
+					flexDirection: 'row',
+				}}>
+					{items.map((label) => {
+						return(
+							Object.keys(label).map(function(labelObject,iterator) {
+								// debugger;
 
-													// change background colour if dragging
-													background: snapshot.isDragging ? 'lightgreen' : 'grey',
-												}]}
-												{...provided.dragHandleProps}>
-												{item}
-											</div>
-											{provided.placeholder}
-										</div>
-									)}
-								</Draggable>
-							))}
-							{provided.placeholder}
-						</div>
-					)}
-				</Droppable>
+								return(
+									// <ItemsContext />
+										<LabelsDroppable labelName={labelObject} labelObject={label[labelObject]}/>
+								)
+								// return(
+								// 	<div key={labelObject}>{labelObject}
+								// 		{
+								// 			label[labelObject]['tasks'].map((task, liIterator) =>{
+								// 				return(<li key={liIterator}>{task}</li>)
+								// 			})
+								// 		}
+								// 	</div>
+								// )
+
+
+								// console.log(task);
+								// console.log(label[task]);
+								// debugger;
+								// use task to get current key's name
+								// and label[task] to get its value
+							})
+						)
+						// debugger;
+						// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
+					})
+					}
+				</div>
 			</DragDropContext>
 		// <div style={{
 		// 	backgroundColor: label['color']
@@ -95,4 +118,4 @@ class ItemsContext extends React.Component {
 	}
 }
 
-export default Radium(ItemsContext);
+export default Radium(LabelDiv);

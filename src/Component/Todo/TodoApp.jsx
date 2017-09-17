@@ -89,9 +89,7 @@ class TodoApp extends React.Component {
 						</div>)
 					}
 				</Motion>
-				<div style={styles.div}>
 					{this.state.items.length > 0 && <ItemsContext items={this.state.items}/>}
-				</div>
 			</div>
 		);
 	}
