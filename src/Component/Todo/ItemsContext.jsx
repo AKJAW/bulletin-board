@@ -1,7 +1,7 @@
 import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
-import {DragDropContext} from 'react-beautiful-dnd';
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import styles from './ItemsContext.css.js';
 import LabelsDroppable from './LabelsDroppable.jsx';
 
@@ -15,15 +15,15 @@ const reorder = (list, startIndex, endIndex) => {
 	return result;
 };
 
-class LabelDiv extends React.Component {
+class ItemsContext extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
 		this.state={
-			items: this.props.items,
+			items: [].concat(this.props.items),
 		}
 		console.log(this.state.items);
-
+		// debugger
 	}
 
 	onDragEnd(result) {
@@ -41,41 +41,44 @@ class LabelDiv extends React.Component {
 
 	render() {
 		// debugger;
-		const items = this.state.items
+		// const items = this.state.items
 		// debugger;
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
-				{items.map((label) => {
-					return(
-						Object.keys(label).map(function(labelObject,iterator) {
-							// debugger;
+				<Droppable droppableId="droppable">
+					{(provided, snapshot) => (
+						<div ref={provided.innerRef} style={{
+							background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
+								padding: 8,
+								width: 100
+						}}>
+							{this.state.items[1]['asda']['tasks'].map((item, liIterator) => (
+								<Draggable key={`item-${liIterator}`} draggableId={`item-${liIterator}`}>
+									{(provided, snapshot) => (
+										<div>
+											<div ref={provided.innerRef} style={
+												[provided.draggableStyle,
+												{
+													// some basic styles to make the items look a bit nicer
+													userSelect: 'none',
+													padding: 8 * 2,
+  												margin: `0 0 ${8}px 0`,
 
-							return(
-								// <ItemsContext />
-									<LabelsDroppable labelName={labelObject} labelObject={label[labelObject]}/>
-							)
-							// return(
-							// 	<div key={labelObject}>{labelObject}
-							// 		{
-							// 			label[labelObject]['tasks'].map((task, liIterator) =>{
-							// 				return(<li key={liIterator}>{task}</li>)
-							// 			})
-							// 		}
-							// 	</div>
-							// )
-
-
-							// console.log(task);
-							// console.log(label[task]);
-							// debugger;
-							// use task to get current key's name
-							// and label[task] to get its value
-						})
-					)
-					// debugger;
-					// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
-				})
-				}
+													// change background colour if dragging
+													background: snapshot.isDragging ? 'lightgreen' : 'grey',
+												}]}
+												{...provided.dragHandleProps}>
+												{item}
+											</div>
+											{provided.placeholder}
+										</div>
+									)}
+								</Draggable>
+							))}
+							{provided.placeholder}
+						</div>
+					)}
+				</Droppable>
 			</DragDropContext>
 		// <div style={{
 		// 	backgroundColor: label['color']
@@ -92,4 +95,4 @@ class LabelDiv extends React.Component {
 	}
 }
 
-export default Radium(LabelDiv);
+export default Radium(ItemsContext);

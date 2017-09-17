@@ -15,14 +15,14 @@ class TodoApp extends React.Component {
 		this.handleAddLabel = this.handleAddLabel.bind(this);
 		this.state = {
 			isCreatingLabel: false,
-			position: -300,
+			position: 0,
 			labelName: '',
 			items: [{12312:{color: "green", tasks: ["p"]}},
 			{asda:{color: "blue", tasks: ["p", 1, 2,3,4 ,5,6,7]}}],
 		};
-		setTimeout(() => {
-			this.setState({position: 0});
-		}, 1);
+		// setTimeout(() => {
+		// 	this.setState({position: 0});
+		// }, 1);
 	}
 
 	componentWillMount() {
@@ -72,7 +72,6 @@ class TodoApp extends React.Component {
 	}
 
 	render() {
-		const items = this.state.items;
 		return(
 			<div>
 				<Motion style={{x: spring(this.state.position)}}>
@@ -91,7 +90,7 @@ class TodoApp extends React.Component {
 					}
 				</Motion>
 				<div style={styles.div}>
-					{items.length > 0 && <ItemsContext items={items}/>}
+					{this.state.items.length > 0 && <ItemsContext items={this.state.items}/>}
 				</div>
 			</div>
 		);

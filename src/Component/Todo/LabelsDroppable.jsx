@@ -4,24 +4,15 @@ import Radium from 'radium';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 import styles from './ItemsContext.css.js';
 
-const reorder = (list, startIndex, endIndex) => {
-	// debugger;
-	const result = Array.from(list);
-	const [removed] = result.splice(startIndex, 1);
-	result.splice(endIndex, 0, removed);
 
-	return result;
-};
-
-class LabelDiv extends React.Component {
+class LabelsDroppable extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
 
 	render() {
-		// debugger;
-		const label = this.props.labelObject;
+		debugger;
 		// debugger;
 		return (
 				<Droppable droppableId="droppable">
@@ -73,4 +64,4 @@ class LabelDiv extends React.Component {
 	}
 }
 
-export default Radium(LabelDiv);
+export default Radium(LabelsDroppable);
