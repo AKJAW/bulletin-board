@@ -39,7 +39,7 @@ class LabelsDroppable extends React.Component {
 														background: snapshot.isDragging ? 'lightgreen' : 'grey',
 													}]}
 													{...provided.dragHandleProps}>
-													{item}
+													{Object.keys(item)[0]}
 												</div>
 												{provided.placeholder}
 											</div>

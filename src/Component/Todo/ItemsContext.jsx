@@ -7,13 +7,13 @@ import LabelsDroppable from './LabelsDroppable.jsx';
 
 const reorder = (list, startIndex, endIndex) => {
 	// debugger;
+	const eresult = Array.from(list);
+	const [removed] = eresult.splice(startIndex, 1);
+	eresult.splice(endIndex, 0, removed);
 
-	const result = Array.from(list);
-	const [removed] = result.splice(startIndex, 1);
-	result.splice(endIndex, 0, removed);
-
-	return result;
+	return eresult;
 };
+
 
 class LabelDiv extends React.Component {
 	constructor(props) {
@@ -33,29 +33,38 @@ class LabelDiv extends React.Component {
 		}
 		const dropabbleIDSplitted = result.draggableId.split('-');
 		const destinatonIDSplitted = result.destination.droppableId.split('-');
-		// debugger;
+		debugger;
 		let label;
 		if(dropabbleIDSplitted[1] === destinatonIDSplitted[1]){
 			label = dropabbleIDSplitted[1];
+		} else {
+			label = destinatonIDSplitted[1];
 		}
 		// const arr = this.state.items;
 		// let items = this.state.items.slice(0);
-		let items = [...this.state.items];
+		let currentItems = [...this.state.items];
 		let index;
-		for(var i = 0; i < items.length; i++) {
-			if(Object.keys(items[i])[0] === label){
+		let newItems = []
+		for(var i = 0; i < currentItems.length; i++) {
+			newItems[i] = JSON.parse(JSON.stringify(currentItems[i]));
+			if(Object.keys(currentItems[i])[0] === label){
 				index = i;
 			}
 	 	}
 
-		// console.log(items);
-		debugger;
-		const tasks = reorder(items[index][label]['tasks'], result.source.index, result.destination.index);
-		items[index][label]['tasks'] = tasks;
-		// debugger;
 
+		// if(dropabbleIDSplitted[1] !== destinatonIDSplitted[1]){
+		// 	newItems[index][label]['tasks'].push()
+		// }
+		// console.log(currentItems[1]['asda']['tasks']);
+		// console.log(newItems[1]['asda']['tasks']);
+		const tasks = reorder(newItems[index][label]['tasks'], result.source.index, result.destination.index);
+		newItems[index][label]['tasks'] = tasks;
+		// debugger;
+		// console.log(currentItems[1]['asda']['tasks']);
+		// console.log(newItems[1]['asda']['tasks']);
 		console.log(this.state.items);
-		this.setState({items: [].concat(items)});
+		this.setState({items: [].concat(newItems)});
 		console.log(this.state.items);
 	}
 

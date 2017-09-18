@@ -111,7 +111,7 @@ class App extends React.Component {
 			console.log(this.state.errorList);
 			setTimeout(() => {
 				this.setState({
-				  errorList: this.state.errorList.filter((_, i) => i !== 0)
+				  errorList: this.state.errorList.filter((_, i) => i !== 0),
 				})
 			}, 4000);
 		});
