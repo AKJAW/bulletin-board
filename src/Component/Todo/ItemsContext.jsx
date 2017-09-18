@@ -31,41 +31,46 @@ class LabelDiv extends React.Component {
 		if (!result.destination) {
 			return;
 		}
-		const dropabbleIDSplitted = result.draggableId.split('-');
+
+		const source = result.source;
+		const destination = result.destination;
+
+		const sourceIDSplitted = result.source.droppableId.split('-');
 		const destinatonIDSplitted = result.destination.droppableId.split('-');
-		debugger;
-		let label;
-		if(dropabbleIDSplitted[1] === destinatonIDSplitted[1]){
-			label = dropabbleIDSplitted[1];
-		} else {
-			label = destinatonIDSplitted[1];
-		}
-		// const arr = this.state.items;
-		// let items = this.state.items.slice(0);
+		// debugger;
+
+
 		let currentItems = [...this.state.items];
-		let index;
+		const destinationLabel = destinatonIDSplitted[1];
+		let destinationIndex;
+		let sourceIndex;
 		let newItems = []
 		for(var i = 0; i < currentItems.length; i++) {
 			newItems[i] = JSON.parse(JSON.stringify(currentItems[i]));
-			if(Object.keys(currentItems[i])[0] === label){
-				index = i;
+			const currentKey = Object.keys(currentItems[i])[0]
+			if(currentKey === destinationLabel){
+				destinationIndex = i;
+			} else if(currentKey === sourceIDSplitted[1]){
+				sourceIndex = i;
 			}
-	 	}
+		}
+		debugger;
 
+		if (source.droppableId === destination.droppableId) {
+			const tasks = reorder(newItems[destinationIndex][destinationLabel]['tasks'], result.source.index, result.destination.index);
+			newItems[destinationIndex][destinationLabel]['tasks'] = tasks;
+		} else if (sourceIndex !== undefined){
+			const sourceLabel = sourceIDSplitted[1];
+			const currentItem = newItems[sourceIndex][sourceLabel]['tasks'][result.source.index];
+			newItems[sourceIndex][sourceLabel]['tasks'].splice(source.index, 1);
+			newItems[destinationIndex][destinationLabel]['tasks'].splice(destination.index, 0, currentItem);
+			debugger;
 
-		// if(dropabbleIDSplitted[1] !== destinatonIDSplitted[1]){
-		// 	newItems[index][label]['tasks'].push()
-		// }
-		// console.log(currentItems[1]['asda']['tasks']);
-		// console.log(newItems[1]['asda']['tasks']);
-		const tasks = reorder(newItems[index][label]['tasks'], result.source.index, result.destination.index);
-		newItems[index][label]['tasks'] = tasks;
-		// debugger;
-		// console.log(currentItems[1]['asda']['tasks']);
-		// console.log(newItems[1]['asda']['tasks']);
-		console.log(this.state.items);
-		this.setState({items: [].concat(newItems)});
-		console.log(this.state.items);
+			}
+
+			console.log(this.state.items);
+			this.setState({items: [].concat(newItems)});
+			console.log(this.state.items);
 	}
 
 
