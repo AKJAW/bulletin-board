@@ -23,7 +23,7 @@ class TasksColumn extends React.Component {
 						<Draggable key={this.props.labelName} draggableId={this.props.labelName} type="COLUMN">
 							{(provided, snapshot) => (
 								<div style={styles.wrapper}>
-									<div innerRef={provided.innerRef} style={[styles.container, provided.draggableStyle]}>
+									<div ref={provided.innerRef} style={[styles.container, provided.draggableStyle]}>
 										<div style={[styles.header, {backgroundColor: snapshot.isDraggingOver ? 'lightgreen' : 'grey',}]}>
 											<div style={styles.title} {...provided.dragHandleProps} >
 												{this.props.labelName}

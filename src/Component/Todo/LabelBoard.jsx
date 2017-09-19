@@ -86,9 +86,9 @@ class LabelBoard extends React.Component {
 						type="COLUMN"
 						direction="horizontal"
 					>
-						{(provided, snapshot) => (
+						{(provided) => (
 							<div style={styles.container}
-								innerRef={provided.innerRef}
+								ref={provided.innerRef}
 							>
 								{items.map(function(label) {
 									// debugger;
