@@ -2,6 +2,7 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
+import styled, { injectGlobal } from 'styled-components';
 import styles from './LabelBoard.css.js';
 import TasksColumn from './TasksColumn.jsx';
 
@@ -14,11 +15,13 @@ const reorder = (list, startIndex, endIndex) => {
 	return eresult;
 };
 
+const isDraggingClassName = 'is-dragging';
 
 class LabelBoard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
+		this.onDragStart = this.onDragStart.bind(this);
 		this.state={
 			items: [].concat(this.props.items),
 		}
@@ -26,9 +29,26 @@ class LabelBoard extends React.Component {
 
 	}
 
+	componentDidMount() {
+	    // eslint-disable-next-line no-unused-expressions
+	    injectGlobal`
+	      body.${isDraggingClassName} {
+	        cursor: grabbing;
+	        user-select: none;
+	      }
+	    `;
+	  }
+
+	onDragStart(initial){
+		// document.body.style.userSelect= 'none';
+		document.body.classList.add(isDraggingClassName);
+	}
+
 	onDragEnd(result) {
-		// debugger;
+		 document.body.classList.remove(isDraggingClassName);
 		// dropped outside the list
+		// document.body.style.userSelect= 'auto';
+		// document.body.style.cursor = 'auto';
 		if (!result.destination) {
 			return;
 		}
@@ -83,7 +103,7 @@ class LabelBoard extends React.Component {
 		const items = this.state.items
 		// debugger;
 		return (
-			<DragDropContext onDragEnd={this.onDragEnd}>
+			<DragDropContext onDragEnd={this.onDragEnd} onDragStart={this.onDragStart}>
 				<div>
 					<Droppable
 						droppableId="board"
@@ -97,18 +117,18 @@ class LabelBoard extends React.Component {
 								{items.map(function(label) {
 									// debugger;
 									return(
-										<div>
-											{Object.keys(label).map(function(labelObject,iterator) {
+										// <div>
+										Object.keys(label).map(function(labelObject,iterator) {
 												// debugger;
 												// labelName={labelObject} labelObject={label[labelObject]}
-												return(
+											return(
 
 													// <div key={labelObject}>
 														<TasksColumn key={labelObject} labelName={labelObject} labelObject={label[labelObject]}/>
 													// </div>
-												)
-											})}
-										</div>
+											)
+										})
+
 									)
 
 								})}

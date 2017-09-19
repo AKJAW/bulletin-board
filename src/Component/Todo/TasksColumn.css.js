@@ -15,13 +15,12 @@ export default {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderTopLeftRadius: '10px',
-		borderTopRightRadius: '3px',
 		hover:{
 			backgroundColor: 'blue',
 		},
 	},
 	title: {
-		color: 'purple',
+		width:'100%',
+		textAlign: 'center',
 	}
 }
