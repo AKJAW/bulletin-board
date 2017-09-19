@@ -81,40 +81,10 @@ class LabelDiv extends React.Component {
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
 				<div style={{
-					display: 'flex',
-					flexDirection: 'row',
+					// display: 'flex',
+					// flexDirection: 'row',
 				}}>
-					{items.map((label) => {
-						return(
-							Object.keys(label).map(function(labelObject,iterator) {
-								// debugger;
 
-								return(
-									// <ItemsContext />
-										<LabelBoard labelName={labelObject} labelObject={label[labelObject]}/>
-								)
-								// return(
-								// 	<div key={labelObject}>{labelObject}
-								// 		{
-								// 			label[labelObject]['tasks'].map((task, liIterator) =>{
-								// 				return(<li key={liIterator}>{task}</li>)
-								// 			})
-								// 		}
-								// 	</div>
-								// )
-
-
-								// console.log(task);
-								// console.log(label[task]);
-								// debugger;
-								// use task to get current key's name
-								// and label[task] to get its value
-							})
-						)
-						// debugger;
-						// return <NotificationDiv type={i.type} key={iterator}>{i.message}</NotificationDiv>;
-					})
-					}
 				</div>
 			</DragDropContext>
 		// <div style={{

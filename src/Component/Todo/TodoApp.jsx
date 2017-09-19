@@ -4,7 +4,7 @@ import Firebase from 'firebase';
 import styles from './TodoApp.css.js';
 import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
-import ItemsContext from './ItemsContext.jsx';
+import LabelBoard from './LabelBoard.jsx';
 
 
 class TodoApp extends React.Component {
@@ -89,7 +89,7 @@ class TodoApp extends React.Component {
 						</div>)
 					}
 				</Motion>
-					{this.state.items.length > 0 && <ItemsContext items={this.state.items}/>}
+				{this.state.items.length > 0 && <LabelBoard items={this.state.items}/>}
 			</div>
 		);
 	}
