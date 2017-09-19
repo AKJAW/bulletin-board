@@ -27,6 +27,7 @@ class LabelBoard extends React.Component {
 	}
 
 	onDragEnd(result) {
+		// debugger;
 		// dropped outside the list
 		if (!result.destination) {
 			return;
@@ -38,6 +39,8 @@ class LabelBoard extends React.Component {
 		const sourceIDSplitted = result.source.droppableId.split('-');
 		const destinatonIDSplitted = result.destination.droppableId.split('-');
 		// debugger;
+
+
 
 
 		let currentItems = [...this.state.items];
@@ -54,9 +57,11 @@ class LabelBoard extends React.Component {
 				sourceIndex = i;
 			}
 		}
-		debugger;
+		// debugger;
 
-		if (source.droppableId === destination.droppableId) {
+		if (result.type === 'COLUMN') {
+				newItems = reorder(newItems, source.index, destination.index);
+		} else if (source.droppableId === destination.droppableId) {
 			const tasks = reorder(newItems[destinationIndex][destinationLabel]['tasks'], result.source.index, result.destination.index);
 			newItems[destinationIndex][destinationLabel]['tasks'] = tasks;
 		} else if (sourceIndex !== undefined){
@@ -64,9 +69,8 @@ class LabelBoard extends React.Component {
 			const currentItem = newItems[sourceIndex][sourceLabel]['tasks'][result.source.index];
 			newItems[sourceIndex][sourceLabel]['tasks'].splice(source.index, 1);
 			newItems[destinationIndex][destinationLabel]['tasks'].splice(destination.index, 0, currentItem);
-			debugger;
-
-			}
+			// debugger;
+		}
 
 			console.log(this.state.items);
 			this.setState({items: [].concat(newItems)});
