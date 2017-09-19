@@ -3,7 +3,7 @@ import React from 'react';
 import Radium from 'radium';
 import {DragDropContext} from 'react-beautiful-dnd';
 import styles from './ItemsContext.css.js';
-import LabelsDroppable from './LabelsDroppable.jsx';
+import LabelBoard from './LabelBoard.jsx';
 
 const reorder = (list, startIndex, endIndex) => {
 	// debugger;
@@ -91,7 +91,7 @@ class LabelDiv extends React.Component {
 
 								return(
 									// <ItemsContext />
-										<LabelsDroppable labelName={labelObject} labelObject={label[labelObject]}/>
+										<LabelBoard labelName={labelObject} labelObject={label[labelObject]}/>
 								)
 								// return(
 								// 	<div key={labelObject}>{labelObject}
