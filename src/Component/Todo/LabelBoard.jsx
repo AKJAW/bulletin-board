@@ -23,14 +23,15 @@ class LabelBoard extends React.Component {
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
 		this.onDragStart = this.onDragStart.bind(this);
-		this.handleDeleteClick = this.handleDeleteClick.bind(this);
-		this.handleAddClick = this.handleAddClick.bind(this);
+		this.handleDeleteClickBoard = this.handleDeleteClickBoard.bind(this);
+		this.handleAddClickBoard = this.handleAddClickBoard.bind(this);
 		this.state={
 			items: [].concat(this.props.items),
 		}
 		console.log(this.state.items);
 
 	}
+
 
 	componentDidMount() {
 	    // eslint-disable-next-line no-unused-expressions
@@ -45,12 +46,25 @@ class LabelBoard extends React.Component {
 	    `;
 	  }
 
-		handleAddClick(labelName){
-			console.log(labelName);
+		componentWillReceiveProps(nextProps){
+			if(nextProps.items !== this.props.items){
+				// debugger;
+				console.log('comwill')
+				console.log(nextProps.items);
+				console.log(nextProps.items[2][111].tasks);
+				this.setState({items: [].concat(nextProps.items)});
+			}
 		}
 
-		handleDeleteClick(labelName){
-			console.log(labelName);
+
+
+
+		handleAddClickBoard(labelName){
+			this.props.onAddClick(labelName);
+		}
+
+		handleDeleteClickBoard(labelName){
+			this.props.onDeleteClick(labelName);
 		}
 
 	onDragStart(initial){
@@ -140,7 +154,7 @@ class LabelBoard extends React.Component {
 											return(
 
 													// <div key={labelObject}>
-														<TasksColumn key={labelObject} labelName={labelObject} labelObject={label[labelObject]} onAddClick={this.handleAddClick} onDeleteClick={this.handleDeleteClick}/>
+														<TasksColumn key={labelObject} labelName={labelObject} labelObject={label[labelObject]} onAddClick={this.handleAddClickBoard} onDeleteClick={this.handleDeleteClickBoard}/>
 													// </div>
 											)
 										}.bind(this))

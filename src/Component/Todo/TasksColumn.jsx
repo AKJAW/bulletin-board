@@ -80,7 +80,7 @@ class TasksColumn extends React.Component {
     this.state={
       color
     };
-    console.log(color.dark());
+    // console.log(color.dark());
   }
 
   handleAddClick(){

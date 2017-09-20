@@ -5,6 +5,8 @@ import styles from './TodoApp.css.js';
 import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
 import LabelBoard from './LabelBoard.jsx';
+import AddTask from './AddTask.jsx';
+import IconChooser from './IconChooser.jsx';
 
 
 class TodoApp extends React.Component {
@@ -13,10 +15,18 @@ class TodoApp extends React.Component {
 		this.CreateLabel = this.CreateLabel.bind(this);
 		this.handleLabelNameChange = this.handleLabelNameChange.bind(this);
 		this.handleAddLabel = this.handleAddLabel.bind(this);
+		this.handleDeleteClick = this.handleDeleteClick.bind(this);
+		this.handleAddClick = this.handleAddClick.bind(this);
+		this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
+		this.handleIconSelect = this.handleIconSelect.bind(this);
 		this.state = {
 			isCreatingLabel: false,
 			position: 0,
 			labelName: '',
+			isAddingTask: false,
+			isChosingTaskIcon: false,
+			taskName: '',
+			currentLabel: '',
 			items: [{12312:{color: "green", tasks: [{isInvisibleNiewidka:'none'}]}},
 			{asda:{color: "blue", tasks: [{psssssssssssssssssssssssssssssssssssssssssssssssssss:'etsy'},{1:'id-card'},{2:'thermometer-full'},{3:'american-sign-language-interpreting'}]}},
 			{111:{color: "purple", tasks: [{p:'none'}]}},
@@ -52,7 +62,42 @@ class TodoApp extends React.Component {
 		// }.bind(this));
 	}
 
+	handleAddTaskClick(text){
+		this.setState({ isChosingTaskIcon: true, taskName: text, isAddingTask: false });
+		// console.log(text);
+	}
 
+	handleAddClick(labelName){
+		this.setState({ isAddingTask: !this.state.isAddingTask, isChosingTaskIcon: false, currentLabel: labelName });
+		// console.log(labelName);
+	}
+
+	handleDeleteClick(labelName){
+		console.log(labelName);
+	}
+
+	handleIconSelect(iconName){
+		const labelName = this.state.currentLabel;
+		console.log(labelName);
+		if(labelName !== ''){
+			let currentItems = [...this.state.items];
+			let newItems = []
+			for(var i = 0; i < currentItems.length; i++) {
+				newItems[i] = JSON.parse(JSON.stringify(currentItems[i]));
+				const currentKey = Object.keys(currentItems[i])[0]
+				if(currentKey === labelName){
+					newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
+				}
+			}
+			console.log(this.state.taskName);
+			console.log(iconName);
+			// console.log(newItems);
+			// console.log(this.state.items);
+			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false }, () => {console.log(this.state.items);});
+			// console.log(this.state.items);
+		}
+
+	}
 
 
 	CreateLabel(){
@@ -93,7 +138,9 @@ class TodoApp extends React.Component {
 						</div>)
 					}
 				</Motion>
-				{this.state.items.length > 0 && <LabelBoard items={this.state.items}/>}
+				{this.state.isAddingTask && <AddTask onAddTaskClick={this.handleAddTaskClick}/>}
+				{this.state.isChosingTaskIcon && <IconChooser taskName={this.state.taskName} onIconSelect={this.handleIconSelect}/>}
+				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClick} onDeleteClick={this.handleDeleteClick}/>}
 			</div>
 		);
 	}

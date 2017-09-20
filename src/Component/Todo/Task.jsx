@@ -2,7 +2,7 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
-import Color from 'color';
+// import Color from 'color';
 import Styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
 
@@ -34,14 +34,14 @@ class Task extends React.Component {
 		super(props);
 		let color = this.props.color;
 		this.isDark = color.dark();
-		console.log(color.hsl());
+		// console.log(color.hsl());
 		if(this.isDark){
-			console.log(color);
+			// console.log(color);
       this.normalColor = color.hsl().string();
       this.lightenedColor = color.lighten(0.3).hsl().string();
       this.textShadow = '1px 1px 1px rgba(0,0,0,1)';
     } else {
-			console.log(color);
+			// console.log(color);
       this.normalColor = color.hsl().string();
       this.lightenedColor = color.darken(0.3).hsl().string();
       this.textShadow = 'none';
