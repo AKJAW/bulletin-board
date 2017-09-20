@@ -19,6 +19,7 @@ class TodoApp extends React.Component {
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
 		this.handleIconSelect = this.handleIconSelect.bind(this);
+		this.handleCancelTaskClick = this.handleCancelTaskClick.bind(this);
 		this.state = {
 			isCreatingLabel: false,
 			position: 0,
@@ -93,7 +94,7 @@ class TodoApp extends React.Component {
 			console.log(iconName);
 			// console.log(newItems);
 			// console.log(this.state.items);
-			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false }, () => {console.log(this.state.items);});
+			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '' }, () => {console.log(this.state.items);});
 			// console.log(this.state.items);
 		}
 
@@ -120,6 +121,10 @@ class TodoApp extends React.Component {
 		this.setState({labelName: ""});
 	}
 
+	handleCancelTaskClick(){
+		this.setState({ isAddingTask: false });
+	}
+
 	render() {
 		return(
 			<div>
@@ -138,7 +143,7 @@ class TodoApp extends React.Component {
 						</div>)
 					}
 				</Motion>
-				{this.state.isAddingTask && <AddTask onAddTaskClick={this.handleAddTaskClick}/>}
+				{this.state.isAddingTask && <AddTask onCancelTaskClick={this.handleCancelTaskClick} onAddTaskClick={this.handleAddTaskClick}/>}
 				{this.state.isChosingTaskIcon && <IconChooser taskName={this.state.taskName} onIconSelect={this.handleIconSelect}/>}
 				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClick} onDeleteClick={this.handleDeleteClick}/>}
 			</div>

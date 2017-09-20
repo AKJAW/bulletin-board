@@ -49,6 +49,7 @@ class AddTask extends React.Component {
 		super(props);
 		this.handleOnChange = this.handleOnChange.bind(this);
 		this.handleOnAddTaskClick = this.handleOnAddTaskClick.bind(this);
+		this.handleOnCancelTaskClick = this.handleOnCancelTaskClick.bind(this);
 		this.state = {
 			taskName: '',
 			inputBorder: 'solid 1px #dcdcdc',
@@ -68,12 +69,17 @@ class AddTask extends React.Component {
 		this.props.onAddTaskClick(taskName);
 	}
 
+	handleOnCancelTaskClick(){
+		this.props.onCancelTaskClick();
+	}
+
 	render() {
 		return (
 			<Container>
 				<InputText>Podaj treść:</InputText>
 				<TaskInput border={this.state.inputBorder} onChange={this.handleOnChange} />
 				<TaskButton onClick={this.handleOnAddTaskClick}>Dodaj</TaskButton>
+				<TaskButton onClick={this.handleOnCancelTaskClick}>Anuluj</TaskButton>
 			</Container>
 		);
 	}
