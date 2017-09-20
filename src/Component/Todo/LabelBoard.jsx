@@ -2,7 +2,7 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
-import styled, { injectGlobal } from 'styled-components';
+import Styled, { injectGlobal } from 'styled-components';
 import styles from './LabelBoard.css.js';
 import TasksColumn from './TasksColumn.jsx';
 
@@ -16,6 +16,11 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const isDraggingClassName = 'is-dragging';
+
+const Container = Styled.div`
+	display: inline-flex;
+	flex-wrap: wrap;
+`;
 
 class LabelBoard extends React.Component {
 	constructor(props) {
@@ -33,7 +38,10 @@ class LabelBoard extends React.Component {
 	    // eslint-disable-next-line no-unused-expressions
 	    injectGlobal`
 	      body.${isDraggingClassName} {
-	        cursor: grabbing;
+					cursor: move; /* fallback if grab cursor is unsupported */
+			    cursor: grabbing;
+			    cursor: -moz-grabbing;
+			    cursor: -webkit-grabbing;
 	        user-select: none;
 	      }
 	    `;
@@ -42,6 +50,7 @@ class LabelBoard extends React.Component {
 	onDragStart(initial){
 		// document.body.style.userSelect= 'none';
 		document.body.classList.add(isDraggingClassName);
+		// debugger;
 	}
 
 	onDragEnd(result) {

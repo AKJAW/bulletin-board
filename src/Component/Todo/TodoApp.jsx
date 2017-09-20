@@ -18,7 +18,8 @@ class TodoApp extends React.Component {
 			position: 0,
 			labelName: '',
 			items: [{12312:{color: "green", tasks: [{p:'none'}]}},
-			{asda:{color: "blue", tasks: [{p:'none'},{1:'none'},{2:'none'},{3:'none'}]}}],
+			{asda:{color: "blue", tasks: [{p:'etsy'},{1:'id-card'},{2:'thermometer-full'},{3:'american-sign-language-interpreting'}]}},
+		{12312:{color: "green", tasks: [{p:'none'}]}}],
 		};
 		// setTimeout(() => {
 		// 	this.setState({position: 0});
