@@ -11,14 +11,6 @@ export default {
 		display: "flex",
 		flexDirection: "column"
 	},
-	header: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		hover:{
-			backgroundColor: 'blue',
-		},
-	},
 	title: {
 		width:'100%',
 		textAlign: 'center',

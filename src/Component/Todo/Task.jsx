@@ -2,11 +2,57 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
+import Color from 'color';
+import Styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
-import styles from './Task.css.js';
 
+
+const Wrapper = Styled.div`
+    background: ${({ isDragging }) => (isDragging ? 'lightblue' : 'lightgrey')};
+		border:none;
+`;
+
+const Item = Styled.div`
+		user-select: none;
+		padding: 16px;
+		margin: 0px 0px 8px 0px;
+		background-color: ${({ isDragging, normalColor, lightenedColor }) => (isDragging ? lightenedColor : normalColor)};
+	  transition: background-color 0.1s ease;
+	  color: ${({ isDark }) => (isDark ? 'white' : 'black')};
+		font-family: 'Ubuntu', sans-serif;
+		text-shadow: ${({ textShadow }) => (textShadow)};
+		&:hover {
+			background-color: ${({ lightenedColor }) => (lightenedColor)};
+			cursor: -webkit-grab;
+		};
+`;
 
 class Task extends React.Component {
+	constructor(props){
+		super(props);
+		let color = this.props.color;
+		this.isDark = color.dark();
+		console.log(color.hsl());
+		if(this.isDark){
+			console.log(color);
+      this.normalColor = color.hsl().string();
+      this.lightenedColor = color.lighten(0.3).hsl().string();
+      this.textShadow = '1px 1px 1px rgba(0,0,0,1)';
+    } else {
+			console.log(color);
+      this.normalColor = color.hsl().string();
+      this.lightenedColor = color.darken(0.3).hsl().string();
+      this.textShadow = 'none';
+      // this.textShadow = '1px 1px 1px rgba(255,255,255,1)';
+    }
+    if(this.normalColor === this.lightenedColor){
+      this.lightenedColor = "hsl(0,0%,21%)"
+    }
+    // console.log(this.normalColor)
+    // console.log(this.lightenedColor)
+		// debugger
+	}
+
 	render() {
 		// debugger;
 		// debugger;
@@ -14,30 +60,17 @@ class Task extends React.Component {
 		return (
 			<Droppable droppableId={`droppable-${this.props.labelName}`}>
 				{(provided, snapshot) => (
-					<div ref={provided.innerRef} style={{
-						background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey',
-						padding: 8,
-					}}>
+					<Wrapper isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} >
 						{this.props.labelObject['tasks'].map(function(item, liIterator) {
 							const key = Object.keys(item)[0];
 							return(
 								<Draggable key={`item-${this.props.labelName}-${liIterator}`} draggableId={`item-${this.props.labelName}-${liIterator}`}>
 									{(provided, snapshot) => (
 										<div>
-											<div ref={provided.innerRef} style={
-												[provided.draggableStyle,
-												{
-													// some basic styles to make the items look a bit nicer
-													userSelect: 'none',
-													padding: 8 * 2,
-													margin: `0 0 ${8}px 0`,
-
-													// change background colour if dragging
-													background: snapshot.isDragging ? 'lightgreen' : 'grey',
-												}]}
+											<Item normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow}  isDark={this.isDark} isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} style={provided.draggableStyle}
 												{...provided.dragHandleProps}>
 												<FontAwesome name={item[key]}/> {key}
-											</div>
+											</Item>
 											{provided.placeholder}
 										</div>
 									)}
@@ -45,7 +78,7 @@ class Task extends React.Component {
 							)
 						}.bind(this))}
 						{provided.placeholder}
-					</div>
+					</Wrapper>
 				)}
 			</Droppable>
 		)

@@ -17,10 +17,6 @@ const reorder = (list, startIndex, endIndex) => {
 
 const isDraggingClassName = 'is-dragging';
 
-const Container = Styled.div`
-	display: inline-flex;
-	flex-wrap: wrap;
-`;
 
 class LabelBoard extends React.Component {
 	constructor(props) {
@@ -101,9 +97,9 @@ class LabelBoard extends React.Component {
 			// debugger;
 		}
 
-			console.log(this.state.items);
+			// console.log(this.state.items);
 			this.setState({items: [].concat(newItems)});
-			console.log(this.state.items);
+			// console.log(this.state.items);
 	}
 
 

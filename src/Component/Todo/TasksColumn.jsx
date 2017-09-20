@@ -2,9 +2,9 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Radium from 'radium';
 import Styled from 'styled-components';
-import {Droppable, Draggable} from 'react-beautiful-dnd';
+import {Draggable} from 'react-beautiful-dnd';
 import Color from 'color';
-import styles from './TasksColumn.css.js';
+// import styles from './TasksColumn.css.js';
 import Task from './Task.jsx';
 
 
@@ -20,6 +20,7 @@ const Header = Styled.div`
   font-size: 1.1rem;
   line-height: 1.7;
   font-family: 'Ubuntu', sans-serif;
+  text-shadow: ${({ textShadow }) => (textShadow)};
   &:hover {
     background-color: ${({ lightenedColor }) => (lightenedColor)};
 		cursor: -webkit-grab;
@@ -30,17 +31,46 @@ const Header = Styled.div`
 const Title = Styled.div`
 	width: 100%;
 	text-align: center;
+  border: 1px solid black;
+`;
+
+
+const Wrapper = Styled.div`
+    display: flex;
+    flex-direction column;
+`;
+
+const Container = Styled.div`
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
 `;
 
 
 class TasksColumn extends React.Component {
   constructor(props) {
     super(props);
-    this.color = Color(this.props.labelObject['color']);
-    this.lightenedColor = this.color.lighten(0.5).string();
-    this.normalColor = this.color.string();
-    this.isDark = this.color.dark();
-    // console.log(color.dark())
+    const color = Color(this.props.labelObject['color']);
+    this.isDark = color.dark();
+    if(this.isDark){
+      this.normalColor = color.hsl().string();
+      this.lightenedColor = color.lighten(0.3).hsl().string();
+      this.textShadow = '1px 1px 1px rgba(0,0,0,1)';
+    } else {
+      this.normalColor = color.hsl().string();
+      this.lightenedColor = color.darken(0.3).hsl().string();
+      this.textShadow = 'none';
+      // this.textShadow = '1px 1px 1px rgba(255,255,255,1)';
+    }
+    if(this.normalColor === this.lightenedColor){
+      this.lightenedColor = "hsl(0,0%,21%)"
+    }
+    // console.log(this.normalColor)
+    // console.log(this.lightenedColor)
+    this.state={
+      color
+    };
+    console.log(color.dark())
   }
 
 	render() {
@@ -61,17 +91,20 @@ class TasksColumn extends React.Component {
 					}}>
 						<Draggable key={this.props.labelName} draggableId={this.props.labelName} type="COLUMN">
 							{(provided, snapshot) => (
-								<div style={styles.wrapper}>
-									<div ref={provided.innerRef} style={[styles.container, provided.draggableStyle]}>
-										<Header normalColor={this.normalColor} lightenedColor={this.lightenedColor} isDark={this.isDark} isDragging={snapshot.isDragging} >
+								<Wrapper>
+                  <Container
+                    innerRef={provided.innerRef}
+                    style={provided.draggableStyle}
+                  >
+										<Header normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow} isDark={this.isDark} isDragging={snapshot.isDragging} >
 											<Title  {...provided.dragHandleProps} >
 												{this.props.labelName}
 											</Title>
 										</Header>
-                    <Task labelName={this.props.labelName} labelObject={this.props.labelObject}/>
-									</div>
+                    <Task labelName={this.props.labelName} labelObject={this.props.labelObject} color={this.state.color}/>
+									</Container>
 									{provided.placeholder}
-								</div>
+								</Wrapper>
 									)}
 						</Draggable>
 						{/* {provided.placeholder} */}
