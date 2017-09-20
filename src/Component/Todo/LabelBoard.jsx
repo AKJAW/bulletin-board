@@ -23,6 +23,8 @@ class LabelBoard extends React.Component {
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
 		this.onDragStart = this.onDragStart.bind(this);
+		this.handleDeleteClick = this.handleDeleteClick.bind(this);
+		this.handleAddClick = this.handleAddClick.bind(this);
 		this.state={
 			items: [].concat(this.props.items),
 		}
@@ -43,8 +45,17 @@ class LabelBoard extends React.Component {
 	    `;
 	  }
 
+		handleAddClick(labelName){
+			console.log(labelName);
+		}
+
+		handleDeleteClick(labelName){
+			console.log(labelName);
+		}
+
 	onDragStart(initial){
 		// document.body.style.userSelect= 'none';
+		// debugger;
 		document.body.classList.add(isDraggingClassName);
 		// debugger;
 	}
@@ -129,14 +140,14 @@ class LabelBoard extends React.Component {
 											return(
 
 													// <div key={labelObject}>
-														<TasksColumn key={labelObject} labelName={labelObject} labelObject={label[labelObject]}/>
+														<TasksColumn key={labelObject} labelName={labelObject} labelObject={label[labelObject]} onAddClick={this.handleAddClick} onDeleteClick={this.handleDeleteClick}/>
 													// </div>
 											)
-										})
+										}.bind(this))
 
 									)
 
-								})}
+								}.bind(this))}
 							</div>
 						)
 						}</Droppable>

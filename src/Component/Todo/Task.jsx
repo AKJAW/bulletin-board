@@ -10,12 +10,14 @@ import FontAwesome from 'react-fontawesome';
 const Wrapper = Styled.div`
     background: ${({ isDragging }) => (isDragging ? 'lightblue' : 'lightgrey')};
 		border:none;
+		min-height: 25px;
+		max-width:200px;
+		word-wrap: break-word;
 `;
 
 const Item = Styled.div`
 		user-select: none;
-		padding: 16px;
-		margin: 0px 0px 8px 0px;
+		padding: 16px 8px 16px 8px;
 		background-color: ${({ isDragging, normalColor, lightenedColor }) => (isDragging ? lightenedColor : normalColor)};
 	  transition: background-color 0.1s ease;
 	  color: ${({ isDark }) => (isDark ? 'white' : 'black')};
@@ -63,19 +65,27 @@ class Task extends React.Component {
 					<Wrapper isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} >
 						{this.props.labelObject['tasks'].map(function(item, liIterator) {
 							const key = Object.keys(item)[0];
-							return(
-								<Draggable key={`item-${this.props.labelName}-${liIterator}`} draggableId={`item-${this.props.labelName}-${liIterator}`}>
-									{(provided, snapshot) => (
-										<div>
-											<Item normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow}  isDark={this.isDark} isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} style={provided.draggableStyle}
-												{...provided.dragHandleProps}>
-												<FontAwesome name={item[key]}/> {key}
-											</Item>
-											{provided.placeholder}
-										</div>
-									)}
-								</Draggable>
-							)
+							if(key !== 'isInvisibleNiewidka'){
+								return(
+									<Draggable key={`item-${this.props.labelName}-${liIterator}`} draggableId={`item-${this.props.labelName}-${liIterator}`}>
+										{(provided, snapshot) => (
+											<div>
+												<Item normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow}  isDark={this.isDark} isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} style={provided.draggableStyle}
+													{...provided.dragHandleProps}>
+													<div style={{display: 'inline-flex', flexDirection: 'row', justifyContent:'space-between', minWidth: '180px'}}>
+														<FontAwesome style={{width: '25px'}} name={item[key]}/>
+														<div style={{wordBreak: 'break-all', margin:'0 5px 0 5px'}}>{key}</div>
+														<FontAwesome name='times'/>
+													</div>
+												</Item>
+												{provided.placeholder}
+											</div>
+										)}
+									</Draggable>
+								)
+							} else {
+								return null;
+							}
 						}.bind(this))}
 						{provided.placeholder}
 					</Wrapper>

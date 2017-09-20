@@ -4,6 +4,7 @@ import Radium from 'radium';
 import Styled from 'styled-components';
 import {Draggable} from 'react-beautiful-dnd';
 import Color from 'color';
+import FontAwesome from 'react-fontawesome';
 // import styles from './TasksColumn.css.js';
 import Task from './Task.jsx';
 
@@ -29,9 +30,12 @@ const Header = Styled.div`
 
 
 const Title = Styled.div`
+  display: inline-flex;
+  flex-direction: row;
 	width: 100%;
 	text-align: center;
-  border: 1px solid black;
+  border-bottom: ${({ border }) => (border)};
+  justify-content:space-between;
 `;
 
 
@@ -50,27 +54,41 @@ const Container = Styled.div`
 class TasksColumn extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+
     const color = Color(this.props.labelObject['color']);
     this.isDark = color.dark();
     if(this.isDark){
       this.normalColor = color.hsl().string();
       this.lightenedColor = color.lighten(0.3).hsl().string();
       this.textShadow = '1px 1px 1px rgba(0,0,0,1)';
+      this.border = '1px solid white;'
     } else {
       this.normalColor = color.hsl().string();
       this.lightenedColor = color.darken(0.3).hsl().string();
       this.textShadow = 'none';
+      this.border = '1px solid black;'
       // this.textShadow = '1px 1px 1px rgba(255,255,255,1)';
     }
     if(this.normalColor === this.lightenedColor){
-      this.lightenedColor = "hsl(0,0%,21%)"
+      this.lightenedColor = "hsl(0,0%,21%)";
+
     }
     // console.log(this.normalColor)
     // console.log(this.lightenedColor)
     this.state={
       color
     };
-    console.log(color.dark())
+    console.log(color.dark());
+  }
+
+  handleAddClick(){
+    this.props.onAddClick(this.props.labelName);
+  }
+
+  handleDeleteClick(){
+    this.props.onDeleteClick(this.props.labelName);
   }
 
 	render() {
@@ -97,8 +115,10 @@ class TasksColumn extends React.Component {
                     style={provided.draggableStyle}
                   >
 										<Header normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow} isDark={this.isDark} isDragging={snapshot.isDragging} >
-											<Title  {...provided.dragHandleProps} >
+											<Title border={this.border} {...provided.dragHandleProps} >
+                        <FontAwesome style={{cursor:'pointer', margin: '7px 0 0 4px'}} name='times-circle' onClick={this.handleDeleteClick}/>
 												{this.props.labelName}
+                        <FontAwesome style={{cursor:'pointer', margin: '7px 4px 0 0'}} name='plus-circle' onClick={this.handleAddClick}/>
 											</Title>
 										</Header>
                     <Task labelName={this.props.labelName} labelObject={this.props.labelObject} color={this.state.color}/>
