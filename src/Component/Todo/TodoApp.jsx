@@ -106,7 +106,7 @@ class TodoApp extends React.Component {
 
 	handleIconSelect(iconName){
 		const labelName = this.state.currentLabel;
-		console.log(labelName);
+		// console.log(labelName);
 		if(labelName !== ''){
 			let currentItems = [...this.state.items];
 			let newItems = []
@@ -117,8 +117,8 @@ class TodoApp extends React.Component {
 					newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
 				}
 			}
-			console.log(this.state.taskName);
-			console.log(iconName);
+			// console.log(this.state.taskName);
+			// console.log(iconName);
 			// console.log(newItems);
 			// console.log(this.state.items);
 			// this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '' }, () => {console.log(this.state.items);});

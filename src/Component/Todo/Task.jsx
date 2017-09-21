@@ -13,6 +13,10 @@ const Wrapper = Styled.div`
 		min-height: 25px;
 		max-width:200px;
 		word-wrap: break-word;
+    &:hover {
+			background-color: ${({ lightenedColor }) => (lightenedColor)};
+			cursor: -webkit-grab;
+		};
 `;
 
 const Item = Styled.div`
@@ -29,9 +33,27 @@ const Item = Styled.div`
 		};
 `;
 
+const TaskRow = Styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  justify-content:space-between;
+  min-width: 180px;
+`;
+
+const TaskRowText = Styled.div`
+  word-break: break-all;
+  margin: 0 5px 0 5px;
+`;
+
+const DeleteRowIcon = Styled.div`
+  cursor: pointer;
+`;
+
+
 class Task extends React.Component {
 	constructor(props){
 		super(props);
+    // this.handleOnDeleteRowClickTask = this.handleOnDeleteRowClickTask.bind(this);
 		let color = this.props.color;
 		this.isDark = color.dark();
 		// console.log(color.hsl());
@@ -54,6 +76,10 @@ class Task extends React.Component {
     // console.log(this.lightenedColor)
 		// debugger
 	}
+  //
+  // handleOnDeleteRowClickTask(){
+  //
+  // }
 
 	render() {
 		// debugger;
@@ -72,11 +98,11 @@ class Task extends React.Component {
 											<div>
 												<Item normalColor={this.normalColor} lightenedColor={this.lightenedColor} textShadow={this.textShadow}  isDark={this.isDark} isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} style={provided.draggableStyle}
 													{...provided.dragHandleProps}>
-													<div style={{display: 'inline-flex', flexDirection: 'row', justifyContent:'space-between', minWidth: '180px'}}>
+													<TaskRow>
 														<FontAwesome style={{width: '25px'}} name={item[key]}/>
-														<div style={{wordBreak: 'break-all', margin:'0 5px 0 5px'}}>{key}</div>
-														<FontAwesome name='times'/>
-													</div>
+														<TaskRowText >{key}</TaskRowText>
+														<DeleteRowIcon onClick={() => (this.props.onDeleteRowClick(key))}><FontAwesome name='times'/></DeleteRowIcon>
+													</TaskRow>
 												</Item>
 												{provided.placeholder}
 											</div>

@@ -56,6 +56,7 @@ class TasksColumn extends React.Component {
     super(props);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleOnDeleteRowClickColumn = this.handleOnDeleteRowClickColumn.bind(this);
 
     const color = Color(this.props.labelObject['color']);
     this.isDark = color.dark();
@@ -91,6 +92,10 @@ class TasksColumn extends React.Component {
     this.props.onDeleteClick(this.props.labelName);
   }
 
+  handleOnDeleteRowClickColumn(taskName){
+    this.props.onDeleteRowClick(taskName, this.props.labelName);
+  }
+
 	render() {
     // console.log(Color('red').hsl().string())
     // console.log(Color('red').lighten(0.5).string())
@@ -121,7 +126,7 @@ class TasksColumn extends React.Component {
                         <FontAwesome style={{cursor:'pointer', margin: '7px 4px 0 0'}} name='plus-circle' onClick={this.handleAddClick}/>
 											</Title>
 										</Header>
-                    <Task labelName={this.props.labelName} labelObject={this.props.labelObject} color={this.state.color}/>
+                    <Task labelName={this.props.labelName} labelObject={this.props.labelObject} onDeleteRowClick={this.handleOnDeleteRowClickColumn} color={this.state.color}/>
 									</Container>
 									{provided.placeholder}
 								</Wrapper>
