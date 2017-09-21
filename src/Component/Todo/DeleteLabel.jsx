@@ -2,9 +2,17 @@ import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
 
-const Container = Styled.div`
+const Wrapper = Styled.div`
   display: inline-flex;
   flex-direction: row;
+	width: 100%;
+	text-align: center;
+  justify-content: center;
+`;
+
+const Container = Styled.div`
+  display: inline-flex;
+  flex-direction: column;
 	width: 100%;
 	text-align: center;
   justify-content: center;
@@ -31,6 +39,7 @@ const TaskButton = Styled.button`
 		font-weight: 600;
 		font-size: 1rem;
 		line-height: 1.3;
+    width: 150px;
     background: rgba(0,0,0,0);
 		background: rgb(255,255,255);
 		&:hover {
@@ -41,46 +50,38 @@ const TaskButton = Styled.button`
 			border-color: #27496d;
 			color: #27496d;
 		};
-
 `;
 
 class AddTask extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleOnChange = this.handleOnChange.bind(this);
-		this.handleOnAddTaskClick = this.handleOnAddTaskClick.bind(this);
-		this.handleOnCancelTaskClick = this.handleOnCancelTaskClick.bind(this);
+	  this.handleOnYesDeleteLabel = this.handleOnYesDeleteLabel.bind(this);
+		this.handleOnNoCancelDeleteLabel = this.handleOnNoCancelDeleteLabel.bind(this);
 		this.state = {
 			taskName: '',
 			inputBorder: 'solid 1px #dcdcdc',
 		}
 	}
 
-	handleOnChange(e){
-		this.setState({ taskName: e.target.value })
+	handleOnYesDeleteLabel(){
+		this.props.onYesDeleteLabel();
 	}
 
-	handleOnAddTaskClick(){
-		const taskName = this.state.taskName;
-		if(taskName === '' || taskName.length > 50){
-			this.setState({inputBorder: 'solid 3px #F55F5F'});
-			return
-		}
-		this.props.onAddTaskClick(taskName);
-	}
-
-	handleOnCancelTaskClick(){
-		this.props.onCancelTaskClick();
+	handleOnNoCancelDeleteLabel(){
+		this.props.onNoCancelDeleteLabel();
 	}
 
 	render() {
 		return (
-			<Container>
-				<InputText>Podaj treść:</InputText>
-				<TaskInput border={this.state.inputBorder} onChange={this.handleOnChange} />
-				<TaskButton onClick={this.handleOnAddTaskClick}>Dodaj</TaskButton>
-				<TaskButton onClick={this.handleOnCancelTaskClick}>Anuluj</TaskButton>
-			</Container>
+			<Wrapper>
+        <Container>
+          <InputText>Czy na pewno chcesz usunąć etykiete?</InputText>
+          <div>
+            <TaskButton onClick={this.handleOnYesDeleteLabel}>Tak</TaskButton>
+            <TaskButton onClick={this.handleOnNoCancelDeleteLabel}>Nie</TaskButton>
+          </div>
+        </Container>
+			</Wrapper>
 		);
 	}
 }

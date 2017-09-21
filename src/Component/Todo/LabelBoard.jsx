@@ -25,8 +25,10 @@ class LabelBoard extends React.Component {
 		this.onDragStart = this.onDragStart.bind(this);
 		this.handleDeleteClickBoard = this.handleDeleteClickBoard.bind(this);
 		this.handleAddClickBoard = this.handleAddClickBoard.bind(this);
+		this.overWriteItemsBoard = this.overWriteItemsBoard.bind(this);
 		this.state={
 			items: [].concat(this.props.items),
+			isChanged: false,
 		}
 		console.log(this.state.items);
 
@@ -48,22 +50,26 @@ class LabelBoard extends React.Component {
 
 		componentWillReceiveProps(nextProps){
 			if(nextProps.items !== this.props.items){
-				// debugger;
-				console.log('comwill')
-				console.log(nextProps.items);
-				console.log(nextProps.items[2][111].tasks);
 				this.setState({items: [].concat(nextProps.items)});
 			}
 		}
 
-
+		overWriteItemsBoard(){
+			this.props.overWriteItems(this.state.items);
+		}
 
 
 		handleAddClickBoard(labelName){
+			if (this.state.isChanged){
+				this.overWriteItemsBoard(this.state.items);
+			}
 			this.props.onAddClick(labelName);
 		}
 
 		handleDeleteClickBoard(labelName){
+			if (this.state.isChanged){
+				this.overWriteItemsBoard(this.state.items);
+			}
 			this.props.onDeleteClick(labelName);
 		}
 
@@ -123,7 +129,7 @@ class LabelBoard extends React.Component {
 		}
 
 			// console.log(this.state.items);
-			this.setState({items: [].concat(newItems)});
+			this.setState({ items: [].concat(newItems), isChanged: true });
 			// console.log(this.state.items);
 	}
 

@@ -29,9 +29,7 @@ const IconInput = Styled.input`
 `;
 
 const IconButton = Styled.button`
-		// min-width: 150px;
 		color: #82A2D7;
-		background: rgba(0,0,0,0);
 		border-style: solid;
 		border-width: 2px;
 		border-color: #82A2D7;
@@ -39,14 +37,16 @@ const IconButton = Styled.button`
 		font-size: 1rem;
 		line-height: 1.3;
     height: 27px;
-		&:hover: {
+    background: rgba(0,0,0,0);
+		background: rgb(255,255,255);
+		&:hover {
 			border-color: #4D6EA4;
 			color: #4D6EA4;
-		},
-		&:active: {
+		};
+    &:active {
 			border-color: #27496d;
 			color: #27496d;
-		},
+		};
 `;
 
 const IconDiv = Styled.div`
@@ -80,7 +80,6 @@ class IconChooser extends React.Component {
     this.handleOnIconClick = this.handleOnIconClick.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnIconSelect = this.handleOnIconSelect.bind(this);
-    console.log(fontAwesomeArray);
     this.state = {
       currentIcons: fontAwesomeArray,
       chosenIcon: 'none',
@@ -100,7 +99,6 @@ class IconChooser extends React.Component {
         // debugger;
         return iconName.includes(currentInput);
       })
-      console.log(currentIcons);
       this.setState({currentIcons})
   	}
 

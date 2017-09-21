@@ -6,6 +6,7 @@ import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
 import LabelBoard from './LabelBoard.jsx';
 import AddTask from './AddTask.jsx';
+import DeleteLabel from './DeleteLabel.jsx';
 import IconChooser from './IconChooser.jsx';
 
 
@@ -15,16 +16,20 @@ class TodoApp extends React.Component {
 		this.CreateLabel = this.CreateLabel.bind(this);
 		this.handleLabelNameChange = this.handleLabelNameChange.bind(this);
 		this.handleAddLabel = this.handleAddLabel.bind(this);
-		this.handleDeleteClick = this.handleDeleteClick.bind(this);
-		this.handleAddClick = this.handleAddClick.bind(this);
+		this.handleDeleteLabelClickInTitle = this.handleDeleteLabelClickInTitle.bind(this);
+		this.handleAddClickInTitle = this.handleAddClickInTitle.bind(this);
 		this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
 		this.handleIconSelect = this.handleIconSelect.bind(this);
 		this.handleCancelTaskClick = this.handleCancelTaskClick.bind(this);
+		this.handleYesDeleteLabel = this.handleYesDeleteLabel.bind(this);
+		this.handleNoCancelDeleteLabel = this.handleNoCancelDeleteLabel.bind(this);
+		this.overWriteItems = this.overWriteItems.bind(this);
 		this.state = {
 			isCreatingLabel: false,
 			position: 0,
 			labelName: '',
 			isAddingTask: false,
+			isDeletingLabel: false,
 			isChosingTaskIcon: false,
 			taskName: '',
 			currentLabel: '',
@@ -33,7 +38,7 @@ class TodoApp extends React.Component {
 			{111:{color: "purple", tasks: [{p:'none'}]}},
 			{bialy:{color: "white", tasks: [{p:'none'}]}},
 			{czarny:{color: "black", tasks: [{p:'none'}]}},
-		],
+			],
 		};
 		// setTimeout(() => {
 		// 	this.setState({position: 0});
@@ -63,18 +68,23 @@ class TodoApp extends React.Component {
 		// }.bind(this));
 	}
 
+	overWriteItems(items){
+		this.setState({ items: [].concat(items) });
+	}
+
 	handleAddTaskClick(text){
 		this.setState({ isChosingTaskIcon: true, taskName: text, isAddingTask: false });
 		// console.log(text);
 	}
 
-	handleAddClick(labelName){
-		this.setState({ isAddingTask: !this.state.isAddingTask, isChosingTaskIcon: false, currentLabel: labelName });
+	handleAddClickInTitle(labelName){
+		this.setState({ isAddingTask: true, isChosingTaskIcon: false, isDeletingLabel:false,  currentLabel: labelName });
 		// console.log(labelName);
 	}
 
-	handleDeleteClick(labelName){
-		console.log(labelName);
+	handleDeleteLabelClickInTitle(labelName){
+		// console.log(labelName);
+		this.setState({ isDeletingLabel: true, isChosingTaskIcon: false, isAddingTask: false, currentLabel: labelName });
 	}
 
 	handleIconSelect(iconName){
@@ -94,7 +104,8 @@ class TodoApp extends React.Component {
 			console.log(iconName);
 			// console.log(newItems);
 			// console.log(this.state.items);
-			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '' }, () => {console.log(this.state.items);});
+			// this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '' }, () => {console.log(this.state.items);});
+			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '', currentLabel: '' });
 			// console.log(this.state.items);
 		}
 
@@ -115,7 +126,7 @@ class TodoApp extends React.Component {
 		const labelName = this.state.labelName;
 		this.firebaseTodoUidRef.child(labelName).set({
 				color: 'red',
-				tasks: {0:'p'},
+			tasks: {0: 'p'},
 		})
 		// ({[labelName]: {'placeholder':'placeholder'}});
 		this.setState({labelName: ""});
@@ -123,6 +134,30 @@ class TodoApp extends React.Component {
 
 	handleCancelTaskClick(){
 		this.setState({ isAddingTask: false });
+	}
+
+	handleNoCancelDeleteLabel(){
+		this.setState({ isDeletingLabel: false });
+	}
+
+	handleYesDeleteLabel(){
+		const labelName = this.state.currentLabel;
+		console.log('labelName');
+		let currentItems = [...this.state.items];
+		let newItems = []
+		for(var i = 0; i < currentItems.length; i++) {
+			const currentKey = Object.keys(currentItems[i])[0]
+			if(currentKey !== labelName){
+				newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
+				// newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
+			}
+		}
+		// debugger;
+		// console.log(this.state.taskName);
+		// console.log(iconName);
+		// console.log(newItems);
+		// console.log(this.state.items);
+		this.setState({ items: [].concat(newItems), isDeletingLabel: false, currentLabel: '' });
 	}
 
 	render() {
@@ -144,8 +179,9 @@ class TodoApp extends React.Component {
 					}
 				</Motion>
 				{this.state.isAddingTask && <AddTask onCancelTaskClick={this.handleCancelTaskClick} onAddTaskClick={this.handleAddTaskClick}/>}
+				{this.state.isDeletingLabel && <DeleteLabel onNoCancelDeleteLabel={this.handleNoCancelDeleteLabel} onYesDeleteLabel={this.handleYesDeleteLabel}/>}
 				{this.state.isChosingTaskIcon && <IconChooser taskName={this.state.taskName} onIconSelect={this.handleIconSelect}/>}
-				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClick} onDeleteClick={this.handleDeleteClick}/>}
+				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClickInTitle} onDeleteClick={this.handleDeleteLabelClickInTitle} overWriteItems={this.overWriteItems}/>}
 			</div>
 		);
 	}
