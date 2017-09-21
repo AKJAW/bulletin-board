@@ -11,11 +11,7 @@ const Wrapper = Styled.div`
 `;
 
 const Container = Styled.div`
-  display: inline-flex;
-  flex-direction: column;
-	width: 100%;
-	text-align: center;
-  justify-content: center;
+  display: inline;
 `;
 
 const InputText = Styled.span`
@@ -31,7 +27,7 @@ const TaskInput = Styled.input`
 	marginLeft: 2px;
 `;
 
-const TaskButton = Styled.button`
+const ChangesButton = Styled.button`
 		color: #82A2D7;
 		border-style: solid;
 		border-width: 2px;
@@ -42,6 +38,7 @@ const TaskButton = Styled.button`
     width: 150px;
     background: rgba(0,0,0,0);
 		background: rgb(255,255,255);
+    margin: 4px;
 		&:hover {
 			border-color: #4D6EA4;
 			color: #4D6EA4;
@@ -52,38 +49,33 @@ const TaskButton = Styled.button`
 		};
 `;
 
-class DeleteLabel extends React.Component {
+class AddTask extends React.Component {
 	constructor(props) {
 		super(props);
-	  this.handleOnYesDeleteLabel = this.handleOnYesDeleteLabel.bind(this);
-		this.handleOnNoCancelDeleteLabel = this.handleOnNoCancelDeleteLabel.bind(this);
+	  this.handleYesApplyChanges = this.handleYesApplyChanges.bind(this);
+		this.handleNoCancelChanges = this.handleNoCancelChanges.bind(this);
 		this.state = {
 			taskName: '',
 			inputBorder: 'solid 1px #dcdcdc',
 		}
 	}
 
-	handleOnYesDeleteLabel(){
-		this.props.onYesDeleteLabel();
+	handleYesApplyChanges(){
+		this.props.onYesApplyChanges();
 	}
 
-	handleOnNoCancelDeleteLabel(){
-		this.props.onNoCancelDeleteLabel();
+	handleNoCancelChanges(){
+		this.props.onNoCancelChanges();
 	}
 
 	render() {
 		return (
-			<Wrapper>
-        <Container>
-          <InputText>Czy na pewno chcesz usunąć etykiete?</InputText>
-          <div>
-            <TaskButton onClick={this.handleOnYesDeleteLabel}>Tak</TaskButton>
-            <TaskButton onClick={this.handleOnNoCancelDeleteLabel}>Nie</TaskButton>
-          </div>
-        </Container>
-			</Wrapper>
+			<Container>
+        <ChangesButton onClick={this.props.onApplyChanges}>Zapisz zmiany</ChangesButton>
+        <ChangesButton onClick={this.handleNoCancelChanges}>Odrzuć zmiany</ChangesButton>
+			</Container>
 		);
 	}
 }
 
-export default DeleteLabel;
+export default AddTask;

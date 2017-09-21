@@ -8,6 +8,7 @@ import LabelBoard from './LabelBoard.jsx';
 import AddTask from './AddTask.jsx';
 import DeleteLabel from './DeleteLabel.jsx';
 import IconChooser from './IconChooser.jsx';
+import ManageChanges from './ManageChanges.jsx';
 
 
 class TodoApp extends React.Component {
@@ -24,6 +25,8 @@ class TodoApp extends React.Component {
 		this.handleYesDeleteLabel = this.handleYesDeleteLabel.bind(this);
 		this.handleNoCancelDeleteLabel = this.handleNoCancelDeleteLabel.bind(this);
 		this.overWriteItems = this.overWriteItems.bind(this);
+		this.updateBoardChanges = this.updateBoardChanges.bind(this);
+		this.handelCancelChanges = this.handelCancelChanges.bind(this);
 		this.state = {
 			isCreatingLabel: false,
 			position: 0,
@@ -33,6 +36,7 @@ class TodoApp extends React.Component {
 			isChosingTaskIcon: false,
 			taskName: '',
 			currentLabel: '',
+			isBoardChanged: false,
 			items: [{12312:{color: "green", tasks: [{isInvisibleNiewidka:'none'}]}},
 			{asda:{color: "blue", tasks: [{psssssssssssssssssssssssssssssssssssssssssssssssssss:'etsy'},{1:'id-card'},{2:'thermometer-full'},{3:'american-sign-language-interpreting'}]}},
 			{111:{color: "purple", tasks: [{p:'none'}]}},
@@ -68,8 +72,21 @@ class TodoApp extends React.Component {
 		// }.bind(this));
 	}
 
+	updateBoardChanges(){
+		this.setState({ isBoardChanged: true });
+	}
+
 	overWriteItems(items){
-		this.setState({ items: [].concat(items) });
+		this.setState({ items: [].concat(items), isBoardChanged: false });
+	}
+
+	handelCancelChanges(){
+		let currentItems = [...this.state.items];
+		let newItems = []
+		for(var i = 0; i < currentItems.length; i++) {
+			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
+		}
+		this.setState({ items: [].concat(newItems), isBoardChanged: false });
 	}
 
 	handleAddTaskClick(text){
@@ -171,17 +188,18 @@ class TodoApp extends React.Component {
 						WebkitTransform: `translate3d(${x}px, 0, 0)`,
 						transform: `translate3d(${x}px, 0, 0)`,
 						}}>
-							<CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>
+							{this.state.isBoardChanged || <CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>}
 							{this.state.isCreatingLabel &&
 								(<CreateLabelMenu labelName={this.state.labelName} onAddLabel={this.handleAddLabel} onChange={this.handleLabelNameChange}/>)}
-
+							{this.state.isBoardChanged && <ManageChanges onNoCancelChanges={this.handelCancelChanges} onApplyChanges={() => this.refs.board.overWriteItemsBoard()}/>}
 						</div>)
 					}
 				</Motion>
+
 				{this.state.isAddingTask && <AddTask onCancelTaskClick={this.handleCancelTaskClick} onAddTaskClick={this.handleAddTaskClick}/>}
 				{this.state.isDeletingLabel && <DeleteLabel onNoCancelDeleteLabel={this.handleNoCancelDeleteLabel} onYesDeleteLabel={this.handleYesDeleteLabel}/>}
 				{this.state.isChosingTaskIcon && <IconChooser taskName={this.state.taskName} onIconSelect={this.handleIconSelect}/>}
-				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClickInTitle} onDeleteClick={this.handleDeleteLabelClickInTitle} overWriteItems={this.overWriteItems}/>}
+				{this.state.items.length > 0 && <LabelBoard items={this.state.items} onAddClick={this.handleAddClickInTitle} onDeleteClick={this.handleDeleteLabelClickInTitle} overWriteItems={this.overWriteItems} updateBoardChanges={this.updateBoardChanges} ref={'board'}/>}
 			</div>
 		);
 	}

@@ -130,6 +130,7 @@ class LabelBoard extends React.Component {
 
 			// console.log(this.state.items);
 			this.setState({ items: [].concat(newItems), isChanged: true });
+			this.props.updateBoardChanges()
 			// console.log(this.state.items);
 	}
 
