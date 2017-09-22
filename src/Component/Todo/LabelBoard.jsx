@@ -75,28 +75,28 @@ class LabelBoard extends React.Component {
 		}
 
 		handleDeleteRowClick(taskName, labelName){
-			// console.log(taskName);
-			// console.log(labelName);
-			let currentItems = [...this.state.items];
-			let newItems = [];
-			for(var i = 0; i < currentItems.length; i++) {
-				const currentKey = Object.keys(currentItems[i])[0]
-				if(currentKey === labelName){
-					// newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
-					const tasks = currentItems[i][labelName]['tasks'];
-					// debugger;
-					for(var j = 0; j < tasks.length; j++) {
-						const currentTask = Object.keys(tasks[j])[0];
-						if(currentTask === taskName){
-							// debugger;
-							currentItems[i][labelName]['tasks'].splice(j, 1);
-						}
+		// console.log(taskName);
+		// console.log(labelName);
+		let currentItems = [...this.state.items];
+		let newItems = [];
+		for(let i = 0; i < currentItems.length; i++) {
+			const currentKey = Object.keys(currentItems[i])[0]
+			if(currentKey === labelName){
+				// newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
+				const tasks = currentItems[i][labelName]['tasks'];
+				// debugger;
+				for(let j = 0; j < tasks.length; j++) {
+					const currentTask = Object.keys(tasks[j])[0];
+					if(currentTask === taskName){
+						// debugger;
+						currentItems[i][labelName]['tasks'].splice(j, 1);
 					}
 				}
-				newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
 			}
-			this.setState({ items: [].concat(newItems), isChanged: true });
-			this.props.updateBoardChanges();
+			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
+		}
+		this.setState({ items: [].concat(newItems), isChanged: true });
+		this.props.updateBoardChanges();
 		}
 
 	onDragStart(initial){

@@ -15,7 +15,7 @@ class TodoApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.CreateLabel = this.CreateLabel.bind(this);
-		this.handleLabelNameChange = this.handleLabelNameChange.bind(this);
+		// this.handleLabelNameChange = this.handleLabelNameChange.bind(this);
 		this.handleAddLabel = this.handleAddLabel.bind(this);
 		this.handleDeleteLabelClickInTitle = this.handleDeleteLabelClickInTitle.bind(this);
 		this.handleAddClickInTitle = this.handleAddClickInTitle.bind(this);
@@ -134,19 +134,28 @@ class TodoApp extends React.Component {
 		console.log("CreateLabel");
 	}
 
-	handleLabelNameChange(e) {
-		this.setState({labelName: e.target.value});
-	}
 
-	handleAddLabel(){
-		console.log(this.state.labelName);
-		const labelName = this.state.labelName;
-		this.firebaseTodoUidRef.child(labelName).set({
-				color: 'red',
-			tasks: {0: 'p'},
-		})
-		// ({[labelName]: {'placeholder':'placeholder'}});
-		this.setState({labelName: ""});
+	handleAddLabel(labelName, labelColor){
+		console.log(labelName);
+		console.log(labelColor);
+		let currentItems = [...this.state.items];
+		let newItems = []
+		for(var i = 0; i < currentItems.length; i++) {
+			const currentKey = Object.keys(currentItems[i])[0]
+			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
+		}
+
+		newItems.push({[labelName]: {color: labelColor, tasks:[{isInvisibleNiewidka:'none'}]}});
+		debugger;
+		this.setState({ items: [].concat(newItems) });
+		// console.log(this.state.labelName);
+		// const labelName = this.state.labelName;
+		// this.firebaseTodoUidRef.child(labelName).set({
+		// 		color: 'red',
+		// 	tasks: {0: 'p'},
+		// })
+		// // ({[labelName]: {'placeholder':'placeholder'}});
+		// this.setState({labelName: ""});
 	}
 
 	handleCancelTaskClick(){
