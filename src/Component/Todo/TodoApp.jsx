@@ -147,7 +147,7 @@ class TodoApp extends React.Component {
 
 		newItems.push({[labelName]: {color: labelColor, tasks:[{isInvisibleNiewidka:'none'}]}});
 		debugger;
-		this.setState({ items: [].concat(newItems) });
+		this.setState({ items: [].concat(newItems), isCreatingLabel:false });
 		// console.log(this.state.labelName);
 		// const labelName = this.state.labelName;
 		// this.firebaseTodoUidRef.child(labelName).set({
@@ -199,7 +199,7 @@ class TodoApp extends React.Component {
 						}}>
 							{this.state.isBoardChanged || <CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>}
 							{this.state.isCreatingLabel &&
-								(<CreateLabelMenu labelName={this.state.labelName} onAddLabel={this.handleAddLabel} onChange={this.handleLabelNameChange}/>)}
+								(<CreateLabelMenu onAddLabel={this.handleAddLabel} items={ this.state.items }/>)}
 							{this.state.isBoardChanged && <ManageChanges onNoCancelChanges={this.handelCancelChanges} onApplyChanges={() => this.refs.board.overWriteItemsBoard()}/>}
 						</div>)
 					}
