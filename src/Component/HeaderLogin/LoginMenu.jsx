@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Firebase from 'firebase';
 import Radium from 'radium';
 import {Motion, spring,} from 'react-motion';
@@ -153,5 +154,10 @@ class LoginMenu extends React.Component {
 		);
 	}
 }
+
+LoginMenu.propTypes = {
+	sendError: PropTypes.func.isRequired,
+	isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default Radium(LoginMenu);

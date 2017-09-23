@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import {Motion, spring,} from 'react-motion';
 // import {slideInDown} from 'react-animations'
@@ -37,7 +38,7 @@ class HeaderLogin extends React.Component {
 							WebkitTransform: `translate3d(0, ${x}px, 0)`,
 							transform: `translate3d(0, ${x}px, 0)`,
 						}]}>
-							<LoginMenu onLogoutClick={this.handleLogoutClick} sendError={this.handleSendError} isLoggedIn={this.props.isLoggedIn}/>
+							<LoginMenu sendError={this.handleSendError} isLoggedIn={this.props.isLoggedIn}/>
 							<span id="login-status" style={styles.span}>{this.props.username ? 'Jesteś zalogowany: ' + this.props.username : 'Nie jesteś zalogowany'}</span>
 
 						</div>
@@ -49,5 +50,13 @@ class HeaderLogin extends React.Component {
 		);
 	}
 }
+
+HeaderLogin.propTypes = {
+	toggled: PropTypes.bool.isRequired,
+	onToggleClick: PropTypes.func.isRequired,
+	sendError: PropTypes.func.isRequired,
+	isLoggedIn: PropTypes.bool.isRequired,
+	username: PropTypes.string.isRequired,
+};
 
 export default Radium(HeaderLogin);

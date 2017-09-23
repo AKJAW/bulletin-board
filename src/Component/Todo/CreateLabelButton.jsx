@@ -1,9 +1,9 @@
 import React from 'react';
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-
-const Button = Styled.button`
+const Button = Styled.button `
 		color: #82A2D7;
 		border-style: solid;
 		border-width: 2px;
@@ -31,15 +31,20 @@ class CreateLabelButton extends React.Component {
 		this.handleCreateLabelClick = this.handleCreateLabelClick.bind(this);
 	}
 
-	handleCreateLabelClick(){
+	handleCreateLabelClick() {
 		this.props.onClick();
 	}
 
 	render() {
-		return(
+		return (
 			<Button onClick={this.props.onClick}>{this.props.children}</Button>
-		)
+		);
 	}
 }
+
+CreateLabelButton.propTypes = {
+	children: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired,
+};
 
 export default CreateLabelButton;

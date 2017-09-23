@@ -1,7 +1,7 @@
 import React from 'react';
-import {Motion, spring,} from 'react-motion';
+import PropTypes from 'prop-types';
+import { Motion, spring } from 'react-motion';
 import Firebase from 'firebase';
-import styles from './TodoApp.css.js';
 import CreateLabelButton from './CreateLabelButton.jsx';
 import CreateLabelMenu from './CreateLabelMenu.jsx';
 import LabelBoard from './LabelBoard.jsx';
@@ -81,9 +81,9 @@ class TodoApp extends React.Component {
 	}
 
 	handelCancelChanges(){
-		let currentItems = [...this.state.items];
-		let newItems = []
-		for(var i = 0; i < currentItems.length; i++) {
+		const currentItems = [...this.state.items];
+		const newItems = [];
+		for (let i = 0; i < currentItems.length; i++) {
 			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
 		}
 		this.setState({ items: [].concat(newItems), isBoardChanged: false });
@@ -107,25 +107,20 @@ class TodoApp extends React.Component {
 	handleIconSelect(iconName){
 		const labelName = this.state.currentLabel;
 		// console.log(labelName);
-		if(labelName !== ''){
-			let currentItems = [...this.state.items];
-			let newItems = []
-			for(var i = 0; i < currentItems.length; i++) {
+		if (labelName !== ''){
+			const currentItems = [...this.state.items];
+			const newItems = []
+			for (let i = 0; i < currentItems.length; i++) {
 				newItems[i] = JSON.parse(JSON.stringify(currentItems[i]));
-				const currentKey = Object.keys(currentItems[i])[0]
-				if(currentKey === labelName){
+				const currentKey = Object.keys(currentItems[i])[0];
+				if (currentKey === labelName){
 					newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
 				}
 			}
 			// console.log(this.state.taskName);
-			// console.log(iconName);
-			// console.log(newItems);
-			// console.log(this.state.items);
-			// this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '' }, () => {console.log(this.state.items);});
 			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '', currentLabel: '' });
 			// console.log(this.state.items);
 		}
-
 	}
 
 
@@ -138,16 +133,15 @@ class TodoApp extends React.Component {
 	handleAddLabel(labelName, labelColor){
 		console.log(labelName);
 		console.log(labelColor);
-		let currentItems = [...this.state.items];
-		let newItems = []
-		for(var i = 0; i < currentItems.length; i++) {
-			const currentKey = Object.keys(currentItems[i])[0]
+		const currentItems = [...this.state.items];
+		const newItems = [];
+		for (let i = 0; i < currentItems.length; i++) {
 			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
 		}
 
-		newItems.push({[labelName]: {color: labelColor, tasks:[{isInvisibleNiewidka:'none'}]}});
-		debugger;
-		this.setState({ items: [].concat(newItems), isCreatingLabel:false });
+		newItems.push({ [labelName]: { color: labelColor, tasks: [{ isInvisibleNiewidka: 'none' }] } });
+		// debugger;
+		this.setState({ items: [].concat(newItems), isCreatingLabel: false });
 		// console.log(this.state.labelName);
 		// const labelName = this.state.labelName;
 		// this.firebaseTodoUidRef.child(labelName).set({
@@ -169,11 +163,11 @@ class TodoApp extends React.Component {
 	handleYesDeleteLabel(){
 		const labelName = this.state.currentLabel;
 		console.log('labelName');
-		let currentItems = [...this.state.items];
-		let newItems = []
-		for(var i = 0; i < currentItems.length; i++) {
-			const currentKey = Object.keys(currentItems[i])[0]
-			if(currentKey !== labelName){
+		const currentItems = [...this.state.items];
+		const newItems = [];
+		for (let i = 0; i < currentItems.length; i++) {
+			const currentKey = Object.keys(currentItems[i])[0];
+			if (currentKey !== labelName){
 				newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
 				// newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
 			}
@@ -189,8 +183,8 @@ class TodoApp extends React.Component {
 	render() {
 		return(
 			<div>
-				<Motion style={{x: spring(this.state.position)}}>
-					{({x}) =>
+				<Motion style={{ x: spring(this.state.position) }}>
+					{({ x }) =>
 						// children is a callback which should accept the current value of
 						// `style`
 						(<div style={{
@@ -200,7 +194,8 @@ class TodoApp extends React.Component {
 							{this.state.isBoardChanged || <CreateLabelButton onClick={this.CreateLabel}>{this.state.isCreatingLabel ? 'Anuluj' : 'Stwórz etykietę'}</CreateLabelButton>}
 							{this.state.isCreatingLabel &&
 								(<CreateLabelMenu onAddLabel={this.handleAddLabel} items={ this.state.items }/>)}
-							{this.state.isBoardChanged && <ManageChanges onNoCancelChanges={this.handelCancelChanges} onApplyChanges={() => this.refs.board.overWriteItemsBoard()}/>}
+							{this.state.isBoardChanged &&
+								<ManageChanges onNoCancelChanges={this.handelCancelChanges} onApplyChanges={() => this.refs.board.overWriteItemsBoard()}/>}
 						</div>)
 					}
 				</Motion>
@@ -213,5 +208,9 @@ class TodoApp extends React.Component {
 		);
 	}
 }
+
+TodoApp.propTypes = {
+	uid: PropTypes.string.isRequired,
+};
 
 export default TodoApp;

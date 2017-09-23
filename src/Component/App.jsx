@@ -2,7 +2,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import {StyleRoot} from 'radium';
 import {Motion, spring,} from 'react-motion';
-import LoginHeader from './HeaderLogin/HeaderLogin.jsx';
+import HeaderLogin from './HeaderLogin/HeaderLogin.jsx';
 import Notification from './Notification/Notification.jsx';
 import TodoApp from './Todo/TodoApp.jsx';
 import styles from './App.css.js';
@@ -134,7 +134,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<StyleRoot>
-					<LoginHeader toggled={this.state.toggled} onToggleClick={this.handleToggleClick} sendError={this.handleError} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
+					<HeaderLogin toggled={this.state.toggled} onToggleClick={this.handleToggleClick} sendError={this.handleError} isLoggedIn={this.state.isLoggedIn} username={this.state.username}/>
 					<Motion style={{x: spring(this.state.toggled ? 0 : -30)}}>
 	          {({x}) =>
 	            // children is a callback which should accept the current value of

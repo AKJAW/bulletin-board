@@ -1,30 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
 
-const Wrapper = Styled.div`
-  display: inline-flex;
-  flex-direction: row;
-	width: 100%;
-	text-align: center;
-  justify-content: center;
-`;
-
 const Container = Styled.div`
   display: inline;
-`;
-
-const InputText = Styled.span`
-	margin-top:4px;
-`;
-
-const TaskInput = Styled.input`
-	height: 19px;
-	transition: box-shadow 0.3s, border 0.3s;
-	border: ${({ border }) => (border)};
-	padding: 3px;
-	marginRight: 7px;
-	marginLeft: 2px;
 `;
 
 const ChangesButton = Styled.button`
@@ -77,5 +57,10 @@ class AddTask extends React.Component {
 		);
 	}
 }
+
+AddTask.propTypes = {
+	onNoCancelChanges: PropTypes.func.isRequired,
+	onApplyChanges: PropTypes.func.isRequired,
+};
 
 export default AddTask;

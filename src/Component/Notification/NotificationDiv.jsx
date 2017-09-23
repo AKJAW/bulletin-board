@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
+import { Motion, spring } from 'react-motion';
 import styles from './NotificationDiv.css.js';
-import {Motion, spring,} from 'react-motion';
 
 class NotificationDiv extends React.Component {
 	constructor(props) {
@@ -29,5 +30,10 @@ class NotificationDiv extends React.Component {
 		)
 	}
 }
+
+NotificationDiv.propTypes = {
+	type: PropTypes.string.isRequired,
+	children: PropTypes.string.isRequired,
+};
 
 export default Radium(NotificationDiv);

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import {Motion, spring,} from 'react-motion';
-import Radium from 'radium';
 import Styled from 'styled-components';
 import { CustomSliderPicker } from 'react-color';
-// import styles from './CreateLabelMenu.css.js';
 
 const Input = Styled.input`
 	margin: 10px 0px 10px 0px;
@@ -61,6 +59,11 @@ const ErrorMessage = Styled.div`
 	margin: 13px 3px 6px 3px;
 `;
 
+const InputContainer = Styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`;
+
 class CreateLabelMenu extends React.Component {
 	constructor(props) {
 		super(props);
@@ -89,7 +92,7 @@ class CreateLabelMenu extends React.Component {
 	checkIfNameExists(labelName){
 		const currentItems = [...this.props.items];
 		for (let i = 0; i < currentItems.length; i++) {
-			const currentKey = Object.keys(currentItems[i])[0]
+			const currentKey = Object.keys(currentItems[i])[0];
 			if (currentKey === labelName){
 				return true;
 				// newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
@@ -99,17 +102,17 @@ class CreateLabelMenu extends React.Component {
 	}
 
 	handleLabelNameChange(e){
-			this.setState({ labelName: e.target.value });
+		this.setState({ labelName: e.target.value });
 	}
 
 	handleCreateLabelClick(){
-		this.props.onAddLabel(this.state.labelName, this.state.color)
+		this.props.onAddLabel(this.state.labelName, this.state.color);
 	}
 
 	handleColorChoosing(){
 		const labelName = this.state.labelName;
 		// debugger;
-		const isNameExists = this.checkIfNameExists(labelName)
+		const isNameExists = this.checkIfNameExists(labelName);
 		// if (labelName !== '' && labelName.length <= 15 && !isNameExists){
 		// 	// debugger;
 		// 	this.setState({ isAdding: true });
@@ -130,22 +133,29 @@ class CreateLabelMenu extends React.Component {
 	}
 
 	render() {
-		return(
+		return (
 			<Container>
-				{this.state.isAdding || <div style={{display:'flex', flexWrap: 'wrap'}}><Input borderColor={this.state.borderColor} onChange={this.handleLabelNameChange}/>
-					<ErrorMessage>{ this.state.errorMessage }</ErrorMessage></div>}
+				{this.state.isAdding || <InputContainer>
+					<Input borderColor={this.state.borderColor} onChange={this.handleLabelNameChange}/>
+					<ErrorMessage>{ this.state.errorMessage }</ErrorMessage>
+				</InputContainer>}
 				{this.state.isAdding || <Button onClick={this.handleColorChoosing}>Wybierz kolor</Button>}
-				{this.state.isAdding && <Picker><CustomSliderPicker color={this.state.color } onChangeComplete ={ this.handleChangeComplete } /></Picker>}
-				{this.state.isAdding && <div>Obecny kolor: { this.state.color }<CurrentColor color={ this.state.color }/></div>}
-				{this.state.isAdding && <Button onClick={this.handleCreateLabelClick}>Dodaj etykietę</Button>}
+				{this.state.isAdding &&
+					<Picker>
+						<CustomSliderPicker color={this.state.color } onChangeComplete ={ this.handleChangeComplete } />
+					</Picker>}
+				{this.state.isAdding &&
+					<div>Obecny kolor: { this.state.color }<CurrentColor color={ this.state.color }/></div>}
+				{this.state.isAdding &&
+					<Button onClick={this.handleCreateLabelClick}>Dodaj etykietę</Button>}
 			</Container>
-		)
+		);
 	}
 }
 
 CreateLabelMenu.propTypes = {
-	items:PropTypes.PropTypes.arrayOf(PropTypes.object).isRequired,
-	onAddLabel:React.PropTypes.func.isRequired,
+	items: PropTypes.arrayOf(PropTypes.object).isRequired,
+	onAddLabel: PropTypes.func.isRequired,
 };
 
-export default Radium(CreateLabelMenu);
+export default CreateLabelMenu;

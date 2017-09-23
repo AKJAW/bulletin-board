@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
 
@@ -22,14 +24,6 @@ const InputText = Styled.span`
 	margin-top:4px;
 `;
 
-const TaskInput = Styled.input`
-	height: 19px;
-	transition: box-shadow 0.3s, border 0.3s;
-	border: ${({ border }) => (border)};
-	padding: 3px;
-	marginRight: 7px;
-	marginLeft: 2px;
-`;
 
 const TaskButton = Styled.button`
 		color: #82A2D7;
@@ -55,12 +49,12 @@ const TaskButton = Styled.button`
 class DeleteLabel extends React.Component {
 	constructor(props) {
 		super(props);
-	  this.handleOnYesDeleteLabel = this.handleOnYesDeleteLabel.bind(this);
+    this.handleOnYesDeleteLabel = this.handleOnYesDeleteLabel.bind(this);
 		this.handleOnNoCancelDeleteLabel = this.handleOnNoCancelDeleteLabel.bind(this);
 		this.state = {
 			taskName: '',
 			inputBorder: 'solid 1px #dcdcdc',
-		}
+		};
 	}
 
 	handleOnYesDeleteLabel(){
@@ -81,9 +75,14 @@ class DeleteLabel extends React.Component {
             <TaskButton onClick={this.handleOnNoCancelDeleteLabel}>Nie</TaskButton>
           </div>
         </Container>
-			</Wrapper>
+      </Wrapper>
 		);
 	}
 }
+
+DeleteLabel.propTypes = {
+	onNoCancelDeleteLabel: PropTypes.func.isRequired,
+	onYesDeleteLabel: PropTypes.func.isRequired,
+};
 
 export default DeleteLabel;

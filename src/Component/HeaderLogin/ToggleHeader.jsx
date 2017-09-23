@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import styles from './ToggleHeader.css.js';
 import FontAwesome from 'react-fontawesome';
@@ -36,5 +37,10 @@ class HeaderLogin extends React.Component {
 		return (<FontAwesome name={this.props.toggled ? 'minus' : 'plus'} style={this.state.style} onClick={this.handleToggleClick}/>);
 	}
 }
+
+HeaderLogin.propTypes = {
+	toggled: PropTypes.bool.isRequired,
+	onToggleClick: PropTypes.func.isRequired,
+};
 
 export default Radium(HeaderLogin);

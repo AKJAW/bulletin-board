@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
 
@@ -53,18 +54,18 @@ class AddTask extends React.Component {
 		this.state = {
 			taskName: '',
 			inputBorder: 'solid 1px #dcdcdc',
-		}
+		};
 	}
 
 	handleOnChange(e){
-		this.setState({ taskName: e.target.value })
+		this.setState({ taskName: e.target.value });
 	}
 
 	handleOnAddTaskClick(){
 		const taskName = this.state.taskName;
-		if(taskName === '' || taskName.length > 50){
-			this.setState({inputBorder: 'solid 3px #F55F5F'});
-			return
+		if (taskName === '' || taskName.length > 50){
+			this.setState({ inputBorder: 'solid 3px #F55F5F' });
+			return;
 		}
 		this.props.onAddTaskClick(taskName);
 	}
@@ -84,5 +85,10 @@ class AddTask extends React.Component {
 		);
 	}
 }
+
+AddTask.propTypes = {
+	onCancelTaskClick: PropTypes.func.isRequired,
+	onAddTaskClick: PropTypes.func.isRequired,
+};
 
 export default AddTask;
