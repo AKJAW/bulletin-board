@@ -89,7 +89,7 @@ class Task extends React.Component {
 			<Droppable droppableId={`droppable-${this.props.labelName}`}>
 				{(provided, snapshot) => (
 					<Wrapper isDragging={snapshot.isDraggingOver} innerRef={provided.innerRef} >
-						{this.props.labelObject['tasks'].map(function(item, liIterator) {
+						{this.props.labelObject['tasks'] && this.props.labelObject['tasks'].map(function(item, liIterator) {
 							const key = Object.keys(item)[0];
 							if(key !== 'isInvisibleNiewidka'){
 								return(

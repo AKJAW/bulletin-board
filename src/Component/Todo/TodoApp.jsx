@@ -37,12 +37,13 @@ class TodoApp extends React.Component {
 			taskName: '',
 			currentLabel: '',
 			isBoardChanged: false,
-			items: [{12312:{color: "green", tasks: [{isInvisibleNiewidka:'none'}]}},
-			{asda:{color: "blue", tasks: [{psssssssssssssssssssssssssssssssssssssssssssssssssss:'etsy'},{1:'id-card'},{2:'thermometer-full'},{3:'american-sign-language-interpreting'}]}},
-			{111:{color: "purple", tasks: [{p:'none'}]}},
-			{bialy:{color: "white", tasks: [{p:'none'}]}},
-			{czarny:{color: "black", tasks: [{p:'none'}]}},
-			],
+			items: [],
+			// items: [{12312:{color: "green", tasks: [{isInvisibleNiewidka:'none'}]}},
+			// {asda:{color: "blue", tasks: [{psssssssssssssssssssssssssssssssssssssssssssssssssss:'etsy'},{1:'id-card'},{2:'thermometer-full'},{3:'american-sign-language-interpreting'}]}},
+			// {111:{color: "purple", tasks: [{p:'none'}]}},
+			// {bialy:{color: "white", tasks: [{p:'none'}]}},
+			// {czarny:{color: "black", tasks: [{p:'none'}]}},
+			// ],
 		};
 		// setTimeout(() => {
 		// 	this.setState({position: 0});
@@ -50,19 +51,20 @@ class TodoApp extends React.Component {
 	}
 
 	componentWillMount() {
-		// this.firebaseTodoUidRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
-		// // this.firebaseLabelRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
-		// this.firebaseTodoUidRef.once('value').then(function(snapshot) {
-		// 	let updatedList = [];
-		// 	snapshot.forEach(function(childSnapshot){
-		// 		updatedList.push({[childSnapshot.key]: childSnapshot.val()})
-		// 		// console.log(snapshot.val());
-		// 		// const updatedList = this.state.items.concat(snapshot.val());
-		// 	}.bind(this))
-		// 	// debugger;
-		// 	console.log(updatedList)
-		// 	this.setState({items: updatedList});
-		// }.bind(this));
+		this.firebaseTodoUidRef = Firebase.database().ref(`todo-list/${this.props.uid}/items`);
+		this.firebaseTodoRef = Firebase.database().ref(`todo-list/${this.props.uid}`);
+		this.firebaseTodoUidRef.once('value').then(function(snapshot) {
+			let updatedList = [];
+			snapshot.forEach(function(childSnapshot){
+				// debugger;
+				updatedList.push(childSnapshot.val());
+				// console.log(snapshot.val());
+				// const updatedList = this.state.items.concat(snapshot.val());
+			}.bind(this));
+			// debugger;
+			console.log(updatedList)
+			this.setState({items: updatedList});
+		}.bind(this));
 
 
 		// debugger;
@@ -77,7 +79,12 @@ class TodoApp extends React.Component {
 	}
 
 	overWriteItems(items){
-		this.setState({ items: [].concat(items), isBoardChanged: false });
+		this.setState({ items: [].concat(items), isBoardChanged: false },
+			() => {
+				this.firebaseTodoRef.update({
+					items: this.state.items,
+				});
+			});
 	}
 
 	handelCancelChanges(){
@@ -114,12 +121,23 @@ class TodoApp extends React.Component {
 				newItems[i] = JSON.parse(JSON.stringify(currentItems[i]));
 				const currentKey = Object.keys(currentItems[i])[0];
 				if (currentKey === labelName){
+					// debugger;
+					if (!newItems[i][labelName]['tasks']){
+						newItems[i][labelName]['tasks'] = [];
+					}
 					newItems[i][labelName]['tasks'].push({ [this.state.taskName]: iconName })
 				}
 			}
 			// console.log(this.state.taskName);
-			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '', currentLabel: '' });
+			this.setState({ items: [].concat(newItems), isChosingTaskIcon: false, taskName: '', currentLabel: '' },
+				() => {
+					this.firebaseTodoRef.update({
+						items: this.state.items,
+					});
+				});
 			// console.log(this.state.items);
+
+
 		}
 	}
 
@@ -139,9 +157,12 @@ class TodoApp extends React.Component {
 			newItems.push(JSON.parse(JSON.stringify(currentItems[i])));
 		}
 
-		newItems.push({ [labelName]: { color: labelColor, tasks: [{ isInvisibleNiewidka: 'none' }] } });
-		// debugger;
+		newItems.push({ [labelName]: { color: labelColor } });
+		debugger;
 		this.setState({ items: [].concat(newItems), isCreatingLabel: false });
+		this.firebaseTodoRef.update({
+			items: newItems,
+		});
 		// console.log(this.state.labelName);
 		// const labelName = this.state.labelName;
 		// this.firebaseTodoUidRef.child(labelName).set({
@@ -177,7 +198,12 @@ class TodoApp extends React.Component {
 		// console.log(iconName);
 		// console.log(newItems);
 		// console.log(this.state.items);
-		this.setState({ items: [].concat(newItems), isDeletingLabel: false, currentLabel: '' });
+		this.setState({ items: [].concat(newItems), isDeletingLabel: false, currentLabel: '' },
+			() => {
+				this.firebaseTodoRef.update({
+					items: this.state.items,
+				});
+			});
 	}
 
 	render() {

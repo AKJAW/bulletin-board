@@ -45,7 +45,7 @@ class HeaderLogin extends React.Component {
           }
         </Motion>
 
-				<ToggleHeader toggled={this.props.toggled} onToggleClick={this.handleToggleClick}/>
+				{/* <ToggleHeader toggled={this.props.toggled} onToggleClick={this.handleToggleClick}/> */}
 			</div>
 		);
 	}

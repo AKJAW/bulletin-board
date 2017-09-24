@@ -111,7 +111,7 @@ class LabelBoard extends React.Component {
 		if (!result.destination) {
 			return;
 		}
-
+		// debugger;
 		const source = result.source;
 		const destination = result.destination;
 
@@ -134,22 +134,38 @@ class LabelBoard extends React.Component {
 		}
 		// debugger;
 
+
+
+
 		if (result.type === 'COLUMN') {
 			newItems = reorder(newItems, source.index, destination.index);
 		} else if (source.droppableId === destination.droppableId) {
+			if (!newItems[destinationIndex][destinationLabel]['tasks']){
+				newItems[destinationIndex][destinationLabel]['tasks'] = [];
+			}
 			const tasks = reorder(newItems[destinationIndex][destinationLabel]['tasks'], result.source.index, result.destination.index);
 			newItems[destinationIndex][destinationLabel]['tasks'] = tasks;
 		} else if (sourceIndex !== undefined){
+			// debugger;
 			const sourceLabel = sourceIDSplitted[1];
 			const currentItem = newItems[sourceIndex][sourceLabel]['tasks'][result.source.index];
+			if (!newItems[sourceIndex][sourceLabel]['tasks']){
+				newItems[sourceIndex][sourceLabel]['tasks'] = [];
+			}
+			if (!newItems[destinationIndex][destinationLabel]['tasks']){
+				newItems[destinationIndex][destinationLabel]['tasks'] = [];
+			}
 			newItems[sourceIndex][sourceLabel]['tasks'].splice(source.index, 1);
 			newItems[destinationIndex][destinationLabel]['tasks'].splice(destination.index, 0, currentItem);
-			// debugger;
 		}
 
+		// debugger;
 		// console.log(this.state.items);
-		this.setState({ items: [].concat(newItems), isChanged: true });
-		this.props.updateBoardChanges();
+		this.setState({ items: [].concat(newItems), isChanged: true },
+		() => {
+			this.props.updateBoardChanges();
+		});
+
 		// console.log(this.state.items);
 	}
 

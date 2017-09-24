@@ -22,7 +22,7 @@ class App extends React.Component {
 		};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		const config = {
 			apiKey: 'AIzaSyBqzVU8p61mFTSdl00ksJnBSTW3pEMk3vw',
 			authDomain: 'bulletin-board-31d52.firebaseapp.com',
@@ -147,7 +147,7 @@ class App extends React.Component {
 							</div>
 	          }
 	        </Motion>
-					{(this.state.isLoggedIn && this.state.uid) || <TodoApp uid={this.state.uid}/>}
+					{(this.state.isLoggedIn && this.state.uid) && <TodoApp uid={this.state.uid}/>}
 
 				</StyleRoot>
 
