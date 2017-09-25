@@ -11,7 +11,7 @@ var _reactcss = require('reactcss');
 
 var _reactcss2 = _interopRequireDefault(_reactcss);
 
-var _common = require('../../../node_modules/react-color/lib/components/common');
+var _common = require('./common');
 
 var _SliderSwatches = require('./SliderSwatches');
 

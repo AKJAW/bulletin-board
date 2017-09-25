@@ -6,7 +6,7 @@ var _reactTestRenderer = require('react-test-renderer');
 
 var _reactTestRenderer2 = _interopRequireDefault(_reactTestRenderer);
 
-var _color = require('../../../node_modules/react-color/lib/helpers/color');
+var _color = require('./helpers/color');
 
 var _Slider = require('./Slider');
 
