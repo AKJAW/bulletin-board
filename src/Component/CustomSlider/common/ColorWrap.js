@@ -1,5 +1,3 @@
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -17,7 +15,7 @@ var _debounce = require('lodash/debounce');
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
-var _color = require('../../helpers/color');
+var _color = require('../helpers/color');
 
 var _color2 = _interopRequireDefault(_color);
 

@@ -1,5 +1,3 @@
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -15,7 +13,7 @@ var _reactcss = require('reactcss');
 
 var _reactcss2 = _interopRequireDefault(_reactcss);
 
-var _hue = require('../../helpers/hue');
+var _hue = require('../helpers/hue');
 
 var hue = _interopRequireWildcard(_hue);
 
