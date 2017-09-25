@@ -60,7 +60,7 @@ class TodoApp extends React.Component {
 				updatedList.push(childSnapshot.val());
 				// console.log(snapshot.val());
 				// const updatedList = this.state.items.concat(snapshot.val());
-			}.bind(this));
+			});
 			// debugger;
 			console.log(updatedList)
 			this.setState({items: updatedList});
@@ -158,7 +158,7 @@ class TodoApp extends React.Component {
 		}
 
 		newItems.push({ [labelName]: { color: labelColor } });
-		debugger;
+		// debugger;
 		this.setState({ items: [].concat(newItems), isCreatingLabel: false });
 		this.firebaseTodoRef.update({
 			items: newItems,

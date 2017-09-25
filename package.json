@@ -8,14 +8,11 @@
     "prop-types": "^15.5.10",
     "radium": "^0.19.4",
     "react": "^15.6.1",
-    "react-animations": "^0.1.0",
     "react-beautiful-dnd": "^2.2.4",
     "react-color": "^2.13.8",
     "react-dom": "^15.6.1",
     "react-fontawesome": "^1.6.1",
     "react-motion": "^0.5.1",
-    "react-transition-group": "^1.2.0",
-    "reactfire": "^1.0.0",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {

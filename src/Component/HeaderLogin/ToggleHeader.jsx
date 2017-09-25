@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Radium from 'radium';
 import styles from './ToggleHeader.css.js';
 import FontAwesome from 'react-fontawesome';
-// import {CSSTransitionGroup} from 'react-transition-group'
 // console.log(styles);
 // console.log(styles.headerLogin');
 

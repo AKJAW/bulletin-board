@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import {Motion, spring,} from 'react-motion';
 import Styled from 'styled-components';
-import { CustomSliderPicker } from 'react-color';
+import { CustomSliderPicker } from '../CustomSlider';
 
 const Input = Styled.input`
 	margin: 10px 0px 10px 0px;

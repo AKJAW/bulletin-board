@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import {Motion, spring,} from 'react-motion';
-// import {slideInDown} from 'react-animations'
 import styles from './HeaderLogin.css.js';
 import LoginMenu from './LoginMenu.jsx';
-import ToggleHeader from './ToggleHeader.jsx';
+// import ToggleHeader from './ToggleHeader.jsx';
 // console.log(styles);
 // console.log(styles.headerLogin');
 
