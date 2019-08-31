@@ -27,6 +27,7 @@ const IconInput = Styled.input`
 	padding: 3px;
 	marginRight: 7px;
 	marginLeft: 2px;
+	width: 80%;
 `;
 
 const IconButton = Styled.button`

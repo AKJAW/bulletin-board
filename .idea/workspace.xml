@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="baab3c13-aab6-4099-9288-810bda2d74ad" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/HELP-US-OUT.txt" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/HELP-US-OUT.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/css/font-awesome.css" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/css/font-awesome.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/css/font-awesome.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/fonts/fontawesome-webfont.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/animated.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/animated.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/bordered-pulled.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/bordered-pulled.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/core.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/core.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/fixed-width.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/fixed-width.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/font-awesome.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/font-awesome.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/icons.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/icons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/larger.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/larger.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/list.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/list.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/mixins.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/mixins.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/path.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/path.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/rotated-flipped.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/rotated-flipped.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/screen-reader.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/screen-reader.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/stacked.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/stacked.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/variables.less" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/less/variables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_animated.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_animated.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_bordered-pulled.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_bordered-pulled.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_core.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_core.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_fixed-width.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_fixed-width.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_icons.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_icons.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_larger.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_larger.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_list.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_list.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_mixins.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_mixins.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_path.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_path.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_rotated-flipped.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_rotated-flipped.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_screen-reader.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_screen-reader.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_stacked.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_stacked.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_variables.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/_variables.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/font-awesome.scss" afterPath="$PROJECT_DIR$/deps/font-awesome-4.7.0/scss/font-awesome.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/App.css.js" afterPath="$PROJECT_DIR$/src/Component/App.css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/App.jsx" afterPath="$PROJECT_DIR$/src/Component/App.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/HeaderLogin.css.js" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/HeaderLogin.css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/HeaderLogin.jsx" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/HeaderLogin.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginButton.jsx" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginButton.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginInput.jsx" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginInput.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.css.js" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.jsx" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/ToggleHeader.css.js" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/ToggleHeader.css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/HeaderLogin/ToggleHeader.jsx" afterPath="$PROJECT_DIR$/src/Component/HeaderLogin/ToggleHeader.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Notification/Notification.jsx" afterPath="$PROJECT_DIR$/src/Component/Notification/Notification.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Notification/NotificationDiv.css.js" afterPath="$PROJECT_DIR$/src/Component/Notification/NotificationDiv.css.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Notification/NotificationDiv.jsx" afterPath="$PROJECT_DIR$/src/Component/Notification/NotificationDiv.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/AddTask.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/AddTask.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/CreateLabelButton.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/CreateLabelButton.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/CreateLabelMenu.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/CreateLabelMenu.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/DeleteLabel.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/DeleteLabel.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/IconChooser.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/IconChooser.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/LabelBoard.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/LabelBoard.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/ManageChanges.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/ManageChanges.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/Task.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/Task.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/TasksColumn.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/TasksColumn.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Component/Todo/TodoApp.jsx" afterPath="$PROJECT_DIR$/src/Component/Todo/TodoApp.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Data/fontAwesome.js" afterPath="$PROJECT_DIR$/src/Data/fontAwesome.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Component/App.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginMenu.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="3200" />
+    <option name="y" value="24" />
+    <option name="width" value="1920" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="bulletin-board" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bulletin-board" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bulletin-board" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bulletin-board" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bulletin-board" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bulletin-board" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bulletin-board" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bulletin-board" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bulletin-board" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bulletin-board" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Component" type="462c0819:PsiDirectoryNode" />
+              <item name="HeaderLogin" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="baab3c13-aab6-4099-9288-810bda2d74ad" name="Default" comment="" />
+      <created>1514378509666</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1514378509666</updated>
+      <workItem from="1514378518304" duration="373000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="373000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="3200" y="24" width="1920" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Component/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Component/HeaderLogin/LoginMenu.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
